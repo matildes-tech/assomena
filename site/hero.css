@@ -1,41 +1,62 @@
-/* AssoMENA — cinematic hero: headline left, glowing EU-MENA globe right.
-   Swaps the flat handshake clipart for the rendered globe image.
-   NOTE: the site applies a blue-colorize filter to this image slot — we
-   must override it (!important) and feather the square edges into the dark. */
+/* AssoMENA — cinematic hero: headline left, large EU-MENA globe bleeding off
+   the right. Cursor spotlight brightens the globe where you hover.
+   NOTE: override the site's blue-colorize filter (!important) + feather edges. */
 
 .am-hero-globe {
   width: 100%; height: auto; display: block;
   opacity: 1 !important;
-  filter: drop-shadow(0 0 55px rgba(86, 124, 255, .38)) !important;
+  filter: drop-shadow(0 0 60px rgba(86, 124, 255, .4)) !important;
   -webkit-mask-image: radial-gradient(circle at 50% 49%, #000 60%, rgba(0,0,0,0) 90%);
           mask-image: radial-gradient(circle at 50% 49%, #000 60%, rgba(0,0,0,0) 90%);
-  animation: am-hero-float 7s ease-in-out infinite alternate;
+  animation: am-hero-float 8s ease-in-out infinite alternate;
 }
-@keyframes am-hero-float { from { transform: translateY(7px); } to { transform: translateY(-11px); } }
+@keyframes am-hero-float { from { transform: translateY(6px); } to { transform: translateY(-9px); } }
 
-/* desktop: two columns, text left + globe right */
+/* cursor spotlight — brightens the globe locally where the cursor is */
+.am-hero-spot {
+  position: absolute; inset: 0; pointer-events: none;
+  mix-blend-mode: screen;
+  background: radial-gradient(circle 15% at var(--mx, 50%) var(--my, 50%),
+              rgba(180, 212, 255, .75), rgba(130, 170, 255, .22) 42%, transparent 66%);
+  -webkit-mask-image: radial-gradient(circle at 50% 49%, #000 60%, rgba(0,0,0,0) 90%);
+          mask-image: radial-gradient(circle at 50% 49%, #000 60%, rgba(0,0,0,0) 90%);
+  opacity: 0; transition: opacity .3s ease;
+}
+
+/* desktop: headline left, big globe bleeding off the right edge */
 @media (min-width: 1024px) {
   .am-hero-row {
-    flex-direction: row !important;
-    align-items: center !important;
+    position: relative !important;
+    max-width: none !important; width: 100% !important;
+    min-height: 82vh !important;
+    align-items: flex-start !important;
     justify-content: center !important;
-    gap: clamp(16px, 3vw, 52px) !important;
-    max-width: 1200px; margin-left: auto; margin-right: auto;
+    padding-left: clamp(28px, 6vw, 96px) !important; padding-right: 0 !important;
+  }
+  .am-hero-row::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, #05070f 0%, rgba(5,7,15,.74) 26%, rgba(5,7,15,0) 56%);
   }
   .am-hero-text {
-    text-align: left !important;
-    max-width: 520px !important; flex: 1 1 auto; min-width: 0;
+    position: relative; z-index: 2;
+    text-align: left !important; max-width: 540px !important; flex: 0 0 auto;
   }
-  .am-hero-text h1 { font-size: clamp(33px, 3.3vw, 52px) !important; line-height: 1.06 !important; }
+  .am-hero-text h1 { font-size: clamp(40px, 4.2vw, 60px) !important; line-height: 1.04 !important; }
   .am-hero-text h1 span { white-space: normal !important; }
-  .am-hero-text > p:first-of-type { font-size: 17px !important; }
+  .am-hero-text p { margin-left: 0 !important; margin-right: 0 !important; }
+  .am-hero-text > p:first-of-type { font-size: 18px !important; }
 
-  .am-hero-globe-wrap { flex: 0 1 auto; max-width: min(44vw, 520px) !important; min-width: 320px; }
-  .am-hero-globe { max-width: min(44vw, 520px) !important; }
+  .am-hero-globe-wrap {
+    position: absolute !important; top: 50%; right: -13%;
+    transform: translateY(-50%);
+    width: min(74vw, 960px) !important; max-width: none !important;
+    margin: 0 !important; z-index: 0;
+  }
+  .am-hero-globe { width: 100%; max-width: none !important; }
 }
 
-/* tablet / mobile: stacked, globe below the text */
+/* tablet / mobile: stacked, globe centered below the text */
 @media (max-width: 1023px) {
-  .am-hero-globe-wrap { width: 100%; display: flex; justify-content: center; }
-  .am-hero-globe { max-width: min(84vw, 420px) !important; margin: 0 auto; }
+  .am-hero-globe-wrap { width: 100%; display: flex; justify-content: center; position: relative; }
+  .am-hero-globe { max-width: min(90vw, 440px) !important; margin: 0 auto; }
 }

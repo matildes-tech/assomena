@@ -24,9 +24,29 @@
     img.removeAttribute('srcset');
     img.setAttribute('src', '/v3/images/hero-globe.webp');
     img.setAttribute('alt', 'EU-MENA business network globe');
-    var wrap = img.parentElement;
-    if (wrap && wrap !== col) wrap.classList.add('am-hero-globe-wrap');
-    else img.classList.add('am-hero-globe-wrap');
+    var wrap = (img.parentElement && img.parentElement !== col) ? img.parentElement : img;
+    wrap.classList.add('am-hero-globe-wrap');
+
+    // cursor spotlight: brighten the globe where the cursor is
+    if (wrap !== img) {
+      var spot = document.createElement('div');
+      spot.className = 'am-hero-spot';
+      wrap.appendChild(spot);
+      wrap.addEventListener('pointermove', function (e) {
+        var r = wrap.getBoundingClientRect();
+        wrap.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        wrap.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        spot.style.opacity = '1';
+      });
+      wrap.addEventListener('pointerleave', function () { spot.style.opacity = '0'; });
+    }
+
+    // remove the "Intelligent Scanning & Matching" block inside the hero
+    var scan = [].slice.call(hero.children).find(function (c) {
+      return /Intelligent Scanning & Matching/i.test(c.innerText);
+    });
+    if (scan) scan.style.display = 'none';
+
     return true;
   }
 

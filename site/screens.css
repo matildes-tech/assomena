@@ -1,0 +1,14 @@
+/* AssoMENA — "one info per screen".
+   Each tagged section fills at least one viewport, content vertically centered.
+   Free scroll (no scroll-snap). */
+
+.am-fullscreen {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* keep inner containers full-width so horizontal layout is unchanged */
+.am-fullscreen > * { width: 100%; }
