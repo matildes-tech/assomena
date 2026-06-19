@@ -32,5 +32,11 @@
 .vt-card span i { font-weight: 400; font-style: normal; opacity: .66; }
 
 @media (max-width: 680px) {
-  .vt-card { flex-basis: 43%; }
+  .vt-grid, .vt-row { gap: 12px; }
+  .vt-card { flex-basis: calc(50% - 6px); padding: 18px 10px; gap: 8px; }
+  .vt-card svg { width: 20px; height: 20px; }
+  .vt-card span { font-size: 13.5px; }
+}
+@media (max-width: 380px) {
+  .vt-card { flex-basis: 100%; }
 }

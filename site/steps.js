@@ -28,11 +28,17 @@
 
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
+  var CHEV = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
   function panelHTML(s, i) {
     var chips = s.items.map(function (it) { return '<span>' + esc(it) + '</span>'; }).join('');
     return '<div class="rs-panel' + (i === 0 ? ' is-active' : '') + '" data-i="' + i + '">' +
-      '<span class="rs-num">' + (i + 1) + '</span>' +
-      '<div class="rs-nav"><button class="rs-prev" aria-label="Previous step">‹</button><button class="rs-next" aria-label="Next step">›</button></div>' +
+      '<div class="rs-head">' +
+        '<span class="rs-num">' + (i + 1) + '</span>' +
+        '<div class="rs-nav"><button class="rs-prev" aria-label="Previous step">‹</button><button class="rs-next" aria-label="Next step">›</button></div>' +
+        '<span class="rs-htitle">' + esc(s.title) + '</span>' +
+        '<span class="rs-chev">' + CHEV + '</span>' +
+      '</div>' +
       '<span class="rs-vtitle">' + esc(s.title) + '</span>' +
       '<div class="rs-content">' +
         '<h3 class="rs-title">' + esc(s.title) + '</h3>' +
@@ -56,7 +62,7 @@
       panels.forEach(function (p, k) { p.classList.toggle('is-active', k === cur); });
     }
     function advance() { if (!stopped) setActive(cur + 1); }
-    function startAuto() { if (!stopped && !timer) timer = setInterval(advance, 5500); }
+    function startAuto() { if (!stopped && !timer && window.innerWidth > 768) timer = setInterval(advance, 5500); }
     function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
 
     track.addEventListener('click', function (e) {

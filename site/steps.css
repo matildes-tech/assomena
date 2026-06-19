@@ -1,6 +1,6 @@
-/* AssoMENA — "Three steps to your next opportunity" horizontal accordion
-   (NYC budgeting-guide style), re-skinned to assomena: Nunito Sans,
-   dark-plum panels, purple accent. Replaces the 3-step block. */
+/* AssoMENA — "Three steps to your next opportunity" accordion stepper.
+   Desktop: horizontal expanding panels. Mobile: vertical accordion.
+   assomena skin: Nunito Sans, dark-plum panels, purple accent. */
 
 .rs-accordion {
   font-family: 'Nunito Sans', system-ui, sans-serif;
@@ -26,9 +26,10 @@
   background: linear-gradient(135deg, #241a3c 0%, #150f20 100%);
 }
 
+.rs-head { display: flex; align-items: center; gap: 10px; }
 .rs-num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 46px; height: 46px; border-radius: 50%;
+  width: 46px; height: 46px; border-radius: 50%; flex: 0 0 auto;
   border: 1.5px solid rgba(255, 255, 255, .32);
   font-weight: 800; font-size: 18px; color: #fff;
   transition: border-color .4s ease, box-shadow .4s ease;
@@ -37,11 +38,8 @@
   border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, .16);
 }
 
-.rs-nav {
-  position: absolute; top: 31px; left: 88px; display: flex; gap: 8px;
-  opacity: 0; pointer-events: none; transition: opacity .35s ease .1s;
-}
-.rs-panel.is-active .rs-nav { opacity: 1; pointer-events: auto; }
+.rs-nav { display: none; gap: 8px; }
+.rs-panel.is-active .rs-nav { display: flex; }
 .rs-nav button {
   width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
   border: 1.5px solid rgba(255, 255, 255, .22); background: transparent;
@@ -50,6 +48,9 @@
   transition: background .25s, color .25s, border-color .25s;
 }
 .rs-nav button:hover { background: rgba(168, 85, 247, .9); border-color: transparent; color: #fff; }
+
+/* horizontal title + chevron — mobile only */
+.rs-htitle, .rs-chev { display: none; }
 
 .rs-vtitle {
   position: absolute; left: 50%; bottom: 28px;
@@ -88,11 +89,39 @@
   color: rgba(255, 255, 255, .86);
 }
 
+/* ---------- mobile: vertical accordion ---------- */
 @media (max-width: 768px) {
   .rs-accordion { margin-bottom: 3.5rem; }
-  .rs-track { flex-direction: column; border-radius: 20px; }
-  .rs-panel { flex: 1 1 auto; min-width: 0; min-height: 0; padding: 24px 22px; }
+  .rs-track { flex-direction: column; gap: 0; border-radius: 18px; }
+  .rs-panel {
+    flex: 1 1 auto; min-width: 0; min-height: 0; overflow: hidden;
+    padding: 0; cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+  }
+  .rs-panel:last-child { border-bottom: 0; }
   .rs-panel.is-active { flex-grow: 0; }
-  .rs-vtitle, .rs-nav { display: none; }
-  .rs-content { width: auto; opacity: 1; transform: none; pointer-events: auto; margin-top: 18px; }
+
+  .rs-head { gap: 14px; padding: 20px 22px; }
+  .rs-num { width: 36px; height: 36px; font-size: 16px; }
+  .rs-nav { display: none !important; }
+  .rs-vtitle { display: none; }
+  .rs-htitle {
+    display: block; flex: 1 1 auto; min-width: 0;
+    font-weight: 800; font-size: clamp(16px, 4.6vw, 19px);
+    letter-spacing: -.01em; line-height: 1.2; color: #fff;
+  }
+  .rs-chev {
+    display: flex; flex: 0 0 auto; color: rgba(255, 255, 255, .55);
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+  }
+  .rs-panel.is-active .rs-chev { transform: rotate(180deg); color: #c4a8ff; }
+
+  .rs-content {
+    width: auto; margin: 0; opacity: 1; transform: none; pointer-events: auto;
+    max-height: 0; padding: 0 22px;
+    transition: max-height .5s cubic-bezier(.4, 0, .2, 1), padding .4s ease, opacity .3s ease;
+  }
+  .rs-panel.is-active .rs-content { max-height: 620px; padding: 2px 22px 24px; transition-delay: 0s; }
+  .rs-title { display: none; }
+  .rs-desc { font-size: 15px; margin-bottom: 18px; }
 }
