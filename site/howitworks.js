@@ -259,6 +259,7 @@
     if (document.querySelector('.am-hiw')) return true;
     var target = locateStepsNode();
     if (!target) return false;
+    var sec = target.closest('section'); if (sec) sec.classList.add('am-hiw-light');
     target.replaceWith(build());
     return true;
   }
@@ -266,6 +267,7 @@
     if (document.querySelector('.am-hiwm')) return true;
     var target = locateMobileNode();
     if (!target) return false;
+    var sec = target.closest('section'); if (sec) sec.classList.add('am-hiw-light');
     var wrap = el('div', 'lg:hidden'); // keep mobile-only gating
     wrap.appendChild(buildMobile());
     target.replaceWith(wrap);

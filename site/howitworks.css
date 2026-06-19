@@ -5,10 +5,10 @@
 .am-hiw {
   --am-accent: #2563eb;
   --am-accent-2: #60a5fa;
-  --am-h: #f6f7fc;
-  --am-body: #a3a9bf;
-  --am-label: #7f8499;
-  --am-line: rgba(255, 255, 255, 0.1);
+  --am-h: #0f1e3d;
+  --am-body: #515a70;
+  --am-label: #6b7280;
+  --am-line: rgba(15, 23, 42, 0.1);
   /* light phone-screen palette */
   --sc-bg: #ffffff;
   --sc-ink: #1b1e2b;
@@ -20,6 +20,14 @@
   font-family: 'Nunito Sans', system-ui, sans-serif;
 }
 .am-hiw * { font-family: inherit; }
+
+/* white section variant (was bg-gray-950) */
+.am-hiw-light,
+section:has(.am-hiw),
+section:has(.am-hiwm) {
+  background-color: #fff !important;
+  background-image: none !important;
+}
 
 /* ---- scroll rail + pin ---- */
 .am-hiw__rail { position: relative; }
@@ -94,8 +102,8 @@
   padding: 11px;
   box-shadow:
     0 2px 4px rgba(0,0,0,.5),
-    0 30px 60px -18px rgba(0,0,0,.6),
-    0 50px 120px -30px rgba(168,85,247,.55);
+    0 30px 60px -18px rgba(15,30,70,.28),
+    0 50px 120px -30px rgba(37,99,235,.42);
   animation: am-float 6.5s var(--am-ease) infinite alternate;
 }
 @keyframes am-float { from { transform: translateY(6px); } to { transform: translateY(-10px); } }
@@ -139,7 +147,7 @@
 .am-sc__plan { flex: 1; border: 1.5px solid var(--sc-line); border-radius: 12px; padding: 11px 10px; text-align: center; }
 .am-sc__plan b { display: block; font-size: 13px; color: var(--sc-ink); }
 .am-sc__plan span { font-size: 10px; color: var(--sc-muted); }
-.am-sc__plan.is-sel { border-color: var(--am-accent); background: rgba(168,85,247,.07); }
+.am-sc__plan.is-sel { border-color: var(--am-accent); background: rgba(37,99,235,.08); }
 .am-sc__btn { width: 100%; border: 0; border-radius: 11px; padding: 11px; font-weight: 700; font-size: 12.5px; color: #fff; background: linear-gradient(135deg, var(--am-accent), var(--am-accent-2)); }
 
 .am-sc__head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
@@ -166,13 +174,13 @@
 .am-sc__bub { background: var(--sc-card); border-radius: 12px 12px 12px 3px; padding: 8px 11px; font-size: 11px; color: #41465a; max-width: 78%; }
 .am-sc__bub.me { margin-left: auto; border-radius: 12px 12px 3px 12px; background: linear-gradient(135deg, var(--am-accent), var(--am-accent-2)); color: #fff; }
 .am-sc__note { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #41465a; padding: 8px 0; border-top: 1px solid var(--sc-line); }
-.am-sc__note i { width: 22px; height: 22px; border-radius: 7px; background: rgba(168,85,247,.12); color: var(--am-accent); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 11px; flex: 0 0 auto; }
+.am-sc__note i { width: 22px; height: 22px; border-radius: 7px; background: rgba(37,99,235,.12); color: var(--am-accent); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 11px; flex: 0 0 auto; }
 
 /* progress dots */
 .am-hiw__dots { display: flex; gap: 9px; margin-top: 38px; }
 .am-hiw__dots button {
   width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%;
-  background: rgba(255,255,255,.2); cursor: pointer; transition: all .4s var(--am-ease);
+  background: rgba(15,30,70,.18); cursor: pointer; transition: all .4s var(--am-ease);
 }
 .am-hiw__dots button.is-active { background: var(--am-accent); width: 26px; border-radius: 5px; }
 
@@ -182,8 +190,8 @@
 
 .am-hiwm {
   --am-accent: #2563eb; --am-accent-2: #60a5fa;
-  --am-h: #f6f7fc; --am-body: #a3a9bf; --am-label: #7f8499;
-  --am-line: rgba(255, 255, 255, 0.1);
+  --am-h: #0f1e3d; --am-body: #515a70; --am-label: #6b7280;
+  --am-line: rgba(15, 23, 42, 0.1);
   --sc-bg: #ffffff; --sc-ink: #1b1e2b; --sc-muted: #6b7080; --sc-card: #f4f5fa; --sc-line: #ebedf4;
   --am-ease: cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Nunito Sans', system-ui, sans-serif;
@@ -213,6 +221,6 @@
 .am-hiwm__dots { display: flex; gap: 8px; }
 .am-hiwm__dots button {
   width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%;
-  background: rgba(255, 255, 255, .22); cursor: pointer; transition: all .4s var(--am-ease);
+  background: rgba(15,30,70,.2); cursor: pointer; transition: all .4s var(--am-ease);
 }
 .am-hiwm__dots button.is-active { background: var(--am-accent); width: 24px; border-radius: 5px; }

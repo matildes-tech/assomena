@@ -85,9 +85,13 @@
     return [].slice.call(document.querySelectorAll('h2')).some(function (h2) {
       if (!EYEBROWS[h2.textContent.trim()]) return false;
       var head = h2.parentElement;
-      return !head || !head.classList.contains('am-sec-head') ||
-        !head.querySelector(':scope > .am-sec-eyebrow') ||
-        h2.previousElementSibling !== head.querySelector(':scope > .am-sec-eyebrow');
+      if (!head || !head.classList.contains('am-sec-head') ||
+          !head.querySelector(':scope > .am-sec-eyebrow') ||
+          h2.previousElementSibling !== head.querySelector(':scope > .am-sec-eyebrow')) return true;
+      /* dark flag must match the section's current background */
+      var sec = h2.closest('section') || head;
+      var dark = luminance(sectionBg(sec)) < 140;
+      return head.classList.contains('am-sec--dark') !== dark;
     });
   }
 
