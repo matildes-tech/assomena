@@ -60,6 +60,10 @@
     });
     if (scan) scan.style.display = 'none';
 
+    // remove the cursor-responsive background canvas
+    var bgCanvas = hero.querySelector('canvas');
+    if (bgCanvas) bgCanvas.style.setProperty('display', 'none', 'important');
+
     return true;
   }
 
