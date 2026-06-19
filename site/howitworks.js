@@ -158,7 +158,54 @@
     return root;
   }
 
-  /* Target = the 4-step grid inside the dark "How It Works" section (section 2). */
+  /* ---- mobile component: phone + step carousel (renders <1024px) ---- */
+  function buildMobile() {
+    var root = el('div', 'am-hiwm');
+    var phoneWrap = el('div', 'am-hiwm__phone');
+    var phone = el('div', 'am-phone');
+    phone.appendChild(el('div', 'am-phone__island'));
+    var screenWrap = el('div', 'am-phone__screen');
+    var textWrap = el('div', 'am-hiwm__text');
+    var dots = el('div', 'am-hiwm__dots');
+
+    STEPS.forEach(function (s, i) {
+      var sc = el('div', 'am-screen', s.screen); sc.dataset.i = i; screenWrap.appendChild(sc);
+      var st = el('div', 'am-hiwm__step',
+        '<p class="am-step__eyebrow">' + s.eyebrow + '</p>' +
+        '<h3 class="am-step__title">' + titleHTML(s.title) + '</h3>' +
+        '<p class="am-step__desc">' + s.desc + '</p>');
+      st.dataset.i = i; textWrap.appendChild(st);
+      var b = document.createElement('button'); b.dataset.i = i; b.setAttribute('aria-label', s.eyebrow); dots.appendChild(b);
+    });
+
+    phone.appendChild(screenWrap); phoneWrap.appendChild(phone);
+    root.appendChild(phoneWrap); root.appendChild(textWrap); root.appendChild(dots);
+
+    var screens = screenWrap.children, texts = textWrap.children, dotEls = dots.children;
+    var cur = -1, timer = null, stopped = false;
+    function setActive(i) {
+      i = (i + STEPS.length) % STEPS.length; if (i === cur) return; cur = i;
+      for (var k = 0; k < STEPS.length; k++) {
+        var on = k === i;
+        screens[k].classList.toggle('is-active', on);
+        texts[k].classList.toggle('is-active', on);
+        dotEls[k].classList.toggle('is-active', on);
+      }
+    }
+    function startAuto() { if (!stopped && !timer) timer = setInterval(function () { setActive(cur + 1); }, 4200); }
+    function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+    dots.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      stopped = true; stopAuto(); setActive(+b.dataset.i);
+    });
+    root.addEventListener('touchstart', function () { stopped = true; stopAuto(); }, { passive: true });
+    root.addEventListener('mouseenter', stopAuto);
+    root.addEventListener('mouseleave', startAuto);
+    setActive(0); startAuto();
+    return root;
+  }
+
+  /* Target = the 4-step grid inside the dark "How It Works" section. */
   function locateStepsNode() {
     var h2 = [].slice.call(document.querySelectorAll('h2')).find(function (e) {
       return e.textContent.trim() === 'How It Works';
@@ -174,18 +221,43 @@
     return (parent && /(^|\s)relative(\s|$)/.test(parent.className)) ? parent : grid;
   }
 
-  function inject() {
+  /* Target = the site's `lg:hidden` mobile timeline container. */
+  function locateMobileNode() {
+    var h2 = [].slice.call(document.querySelectorAll('h2')).find(function (e) {
+      return e.textContent.trim() === 'How It Works';
+    });
+    if (!h2) return null;
+    var sec = h2; while (sec && sec.tagName !== 'SECTION') sec = sec.parentElement;
+    if (!sec) return null;
+    return [].slice.call(sec.querySelectorAll('div')).find(function (c) {
+      return /lg:hidden/.test(c.className) && /Sign Up/.test(c.innerText) && /Interact/.test(c.innerText);
+    }) || null;
+  }
+
+  function injectDesktop() {
     if (document.querySelector('.am-hiw')) return true;
     var target = locateStepsNode();
     if (!target) return false;
     target.replaceWith(build());
     return true;
   }
+  function injectMobile() {
+    if (document.querySelector('.am-hiwm')) return true;
+    var target = locateMobileNode();
+    if (!target) return false;
+    var wrap = el('div', 'lg:hidden'); // keep mobile-only gating
+    wrap.appendChild(buildMobile());
+    target.replaceWith(wrap);
+    return true;
+  }
 
   function start() {
-    if (inject()) return;
     var tries = 0;
-    var t = setInterval(function () { tries++; if (inject() || tries > 30) clearInterval(t); }, 200);
+    var t = setInterval(function () {
+      tries++;
+      var d = injectDesktop(), m = injectMobile();
+      if ((d && m) || tries > 40) clearInterval(t);
+    }, 200);
   }
 
   if (document.readyState === 'complete') setTimeout(start, 400);

@@ -176,5 +176,38 @@
 }
 .am-hiw__dots button.is-active { background: var(--am-accent); width: 26px; border-radius: 5px; }
 
-/* This module renders only inside the site's `hidden lg:block` container
-   (>=1024px). Below that, the site shows its own original step timeline. */
+/* The pinned transition above renders only inside the site's `hidden lg:block`
+   container (>=1024px). Below that, the mobile component below renders inside
+   the site's `lg:hidden` container — a phone + step carousel with dots. */
+
+.am-hiwm {
+  --am-accent: #a855f7; --am-accent-2: #7c8cff;
+  --am-h: #f6f7fc; --am-body: #a3a9bf; --am-label: #7f8499;
+  --am-line: rgba(255, 255, 255, 0.1);
+  --sc-bg: #ffffff; --sc-ink: #1b1e2b; --sc-muted: #6b7080; --sc-card: #f4f5fa; --sc-line: #ebedf4;
+  --am-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(20px, 5vw, 30px); max-width: 440px; margin: 0 auto;
+}
+.am-hiwm__phone .am-phone { width: clamp(212px, 60vw, 244px); }
+
+.am-hiwm__text { position: relative; width: 100%; min-height: 184px; }
+.am-hiwm__step {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  text-align: center; opacity: 0; transform: translateY(10px);
+  transition: opacity .5s var(--am-ease), transform .5s var(--am-ease);
+  pointer-events: none;
+}
+.am-hiwm__step.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.am-hiwm__step .am-step__eyebrow { margin-bottom: 12px; }
+.am-hiwm__step .am-step__title { font-size: clamp(26px, 8vw, 32px); margin-bottom: 12px; }
+.am-hiwm__step .am-step__desc { max-width: 36ch; margin: 0 auto; }
+
+.am-hiwm__dots { display: flex; gap: 8px; }
+.am-hiwm__dots button {
+  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .22); cursor: pointer; transition: all .4s var(--am-ease);
+}
+.am-hiwm__dots button.is-active { background: var(--am-accent); width: 24px; border-radius: 5px; }
