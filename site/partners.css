@@ -1,13 +1,15 @@
 /* AssoMENA — "Partners & Collaborators" client-logo band (Lifer-style),
-   injected just below the hero. Dark, to flow out of the black hero.
-   Site font (Nunito Sans). */
+   injected at the top of the first white section, above "How It Works".
+   Light theme. Site font (Nunito Sans). */
 
 .am-partners {
-  --p-logo: rgba(255, 255, 255, 0.42);
-  --p-logo-hi: rgba(255, 255, 255, 0.92);
+  --p-logo: #aab1c2;
+  --p-logo-hi: #2b3242;
   position: relative;
-  background: linear-gradient(180deg, #000 0%, #010205 55%, #030712 100%);
-  padding: clamp(44px, 6vw, 72px) 0;
+  background: transparent;
+  padding: 4px 0 clamp(40px, 5vw, 60px);
+  margin-bottom: clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.07);
   font-family: 'Nunito Sans', system-ui, sans-serif;
   overflow: hidden;
 }
@@ -15,7 +17,7 @@
   text-align: center;
   font-size: 12px; font-weight: 700;
   letter-spacing: 0.26em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+  color: #97a0b1;
   margin: 0 0 clamp(28px, 3.5vw, 44px);
 }
 
@@ -42,7 +44,7 @@
   display: inline-flex; align-items: center; gap: 11px;
   color: var(--p-logo);
   white-space: nowrap;
-  transition: color .35s ease, opacity .35s ease;
+  transition: color .35s ease;
 }
 .am-logo:hover { color: var(--p-logo-hi); }
 .am-logo svg { width: 26px; height: 26px; flex: 0 0 auto; }
@@ -50,10 +52,11 @@
   font-size: clamp(17px, 1.5vw, 20px); font-weight: 700;
   letter-spacing: -0.01em; line-height: 1;
 }
-.am-logo span i { font-weight: 300; font-style: normal; opacity: .85; }
+.am-logo span i { font-weight: 300; font-style: normal; opacity: .72; }
 
 @media (prefers-reduced-motion: reduce) {
-  .am-partners__track { animation: none; transform: none; justify-content: center; flex-wrap: wrap; gap: 40px 64px; }
+  .am-partners__track { animation: none; transform: none; justify-content: center; flex-wrap: wrap; gap: 36px 60px; }
   .am-partners__group:nth-child(2) { display: none; }
+  .am-partners__group { padding-right: 0; }
   .am-partners__viewport { -webkit-mask-image: none; mask-image: none; }
 }

@@ -44,18 +44,19 @@
     return sec;
   }
 
-  function findHero() {
+  // Target: the first white section (the "How It Works — Three steps" band,
+  // bg-white) that follows the dark hero. The logo strip is prepended so it
+  // opens the white content area.
+  function locateTarget() {
     var secs = [].slice.call(document.querySelectorAll('section'));
-    // prefer the section that holds the hero headline
-    var hero = secs.find(function (s) { return /Connecting & Empowering|EU-MENA Businesses/i.test(s.innerText); });
-    return hero || secs[0] || null;
+    return secs.find(function (s) { return /(^|\s)bg-white(\s|$)/.test((s.className || '').toString()); }) || null;
   }
 
   function inject() {
     if (document.querySelector('.am-partners')) return true;
-    var hero = findHero();
-    if (!hero) return false;
-    hero.insertAdjacentElement('afterend', build());
+    var sec = locateTarget();
+    if (!sec) return false;
+    sec.insertBefore(build(), sec.firstChild);
     return true;
   }
 
