@@ -7,8 +7,11 @@
   --p-logo-hi: #2b3242;
   position: relative;
   background: transparent;
-  padding: 2px 0 clamp(18px, 2.6vw, 28px);
-  margin-bottom: clamp(14px, 2vw, 24px);
+  /* invert the surrounding whitespace: pull up (less space above) and add
+     more space below so the bar sits further from the "Three steps" section */
+  margin-top: clamp(-52px, -5vw, -34px);
+  padding: 2px 0 12px;
+  margin-bottom: clamp(46px, 6vw, 74px);
   font-family: 'Nunito Sans', system-ui, sans-serif;
   overflow: hidden;
 }
