@@ -1,0 +1,41 @@
+/* AssoMENA — cinematic hero: headline left, glowing EU-MENA globe right.
+   Swaps the flat handshake clipart for the rendered globe image.
+   NOTE: the site applies a blue-colorize filter to this image slot — we
+   must override it (!important) and feather the square edges into the dark. */
+
+.am-hero-globe {
+  width: 100%; height: auto; display: block;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 55px rgba(86, 124, 255, .38)) !important;
+  -webkit-mask-image: radial-gradient(circle at 50% 49%, #000 60%, rgba(0,0,0,0) 90%);
+          mask-image: radial-gradient(circle at 50% 49%, #000 60%, rgba(0,0,0,0) 90%);
+  animation: am-hero-float 7s ease-in-out infinite alternate;
+}
+@keyframes am-hero-float { from { transform: translateY(7px); } to { transform: translateY(-11px); } }
+
+/* desktop: two columns, text left + globe right */
+@media (min-width: 1024px) {
+  .am-hero-row {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(16px, 3vw, 52px) !important;
+    max-width: 1200px; margin-left: auto; margin-right: auto;
+  }
+  .am-hero-text {
+    text-align: left !important;
+    max-width: 520px !important; flex: 1 1 auto; min-width: 0;
+  }
+  .am-hero-text h1 { font-size: clamp(33px, 3.3vw, 52px) !important; line-height: 1.06 !important; }
+  .am-hero-text h1 span { white-space: normal !important; }
+  .am-hero-text > p:first-of-type { font-size: 17px !important; }
+
+  .am-hero-globe-wrap { flex: 0 1 auto; max-width: min(44vw, 520px) !important; min-width: 320px; }
+  .am-hero-globe { max-width: min(44vw, 520px) !important; }
+}
+
+/* tablet / mobile: stacked, globe below the text */
+@media (max-width: 1023px) {
+  .am-hero-globe-wrap { width: 100%; display: flex; justify-content: center; }
+  .am-hero-globe { max-width: min(84vw, 420px) !important; margin: 0 auto; }
+}

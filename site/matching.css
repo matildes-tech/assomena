@@ -1,10 +1,12 @@
-/* AssoMENA — "What We Match You With" gradient cards.
-   Replaces the 4-tile grid (post-hydration) with soft gradient cards in the
-   brand purple→indigo palette: an icon tile, a badge with a colored dot, a
-   faint decorative line-icon, and an arrow CTA that slides on hover.
-   Site font (Nunito Sans). */
+/* AssoMENA — "What We Match You With" cards.
+   All-white cards with full info (title, description, feature checklist) and a
+   "LEARN MORE" link with an animated arrow. Deep-navy text, blue accents, no
+   icons/emoji. Site font (Nunito Sans). */
 
 .am-match { font-family: 'Nunito Sans', system-ui, sans-serif; }
+
+/* section heading: +2px */
+.am-match-heading { font-size: 1.25rem !important; }
 
 .am-match__grid {
   display: grid;
@@ -21,121 +23,66 @@
   display: flex;
   flex-direction: column;
   min-height: 232px;
-  padding: clamp(18px, 1.7vw, 24px);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  padding: 22px;
+  border-radius: 18px;
   overflow: hidden;
   text-decoration: none;
-  background: linear-gradient(150deg, var(--am-g1), var(--am-g2));
-  box-shadow: 0 18px 46px -26px rgba(43, 33, 92, 0.34);
-  transition: transform .32s cubic-bezier(.2,.7,.2,1), box-shadow .32s ease;
-  isolation: isolate;
+  background: #ffffff;
+  border: 1px solid rgba(15, 30, 70, 0.08);
+  box-shadow: 0 8px 24px -16px rgba(15, 30, 70, 0.3);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 .am-mcard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 30px 60px -28px rgba(43, 33, 92, 0.46);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 46px -22px rgba(15, 30, 70, 0.4);
 }
 
-/* faint decorative line-icon, bottom-right */
-.am-mcard__bg {
-  position: absolute;
-  right: -18px; bottom: -22px;
-  width: 132px; height: 132px;
-  color: var(--am-accent);
-  opacity: .11;
-  pointer-events: none;
-  transform: rotate(-8deg);
-  transition: transform .4s cubic-bezier(.2,.7,.2,1), opacity .4s ease;
-  z-index: -1;
-}
-.am-mcard:hover .am-mcard__bg {
-  transform: rotate(0deg) scale(1.06);
-  opacity: .16;
-}
-
-/* header row: icon tile + badge */
-.am-mcard__top {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; margin-bottom: 4px;
-}
-.am-mcard__icon {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 42px; height: 42px;
-  border-radius: 13px;
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--am-accent);
-  box-shadow: 0 6px 16px -10px var(--am-accent);
-}
-.am-mcard__icon svg { width: 23px; height: 23px; }
-
-/* badge */
-.am-mcard__badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 5px 11px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  font-size: 11px; font-weight: 800;
-  letter-spacing: .04em; text-transform: uppercase;
-  color: #3b3457;
-}
-.am-mcard__dot {
-  width: 7px; height: 7px; border-radius: 999px;
-  background: var(--am-accent);
-  box-shadow: 0 0 0 3px var(--am-accent-soft);
-}
-
-/* title + description */
-.am-mcard__body { margin-top: auto; padding-top: 18px; }
+.am-mcard__content { display: flex; flex-direction: column; flex: 1 1 auto; }
 .am-mcard__title {
-  margin: 0;
-  font-size: clamp(18px, 1.5vw, 21px);
-  font-weight: 800; letter-spacing: -0.015em;
-  color: #1a1430;
+  font-size: clamp(19px, 1.6vw, 22px);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: #0f1e3d; line-height: 1.1;
 }
 .am-mcard__desc {
-  margin: 6px 0 0;
-  font-size: 13px; line-height: 1.45;
-  color: #574f6e;
-  max-width: 22ch;
+  margin-top: 4px;
+  font-size: 12.5px; line-height: 1.35;
+  color: #64748b;
 }
 
-/* CTA */
-.am-mcard__cta {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 16px;
-  font-size: 12.5px; font-weight: 800;
-  color: var(--am-accent);
+/* checklist */
+.am-mcard__list {
+  list-style: none; margin: 14px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 9px;
 }
-.am-mcard__cta svg {
-  width: 15px; height: 15px;
-  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+.am-mcard__item { display: flex; align-items: center; gap: 9px; }
+.am-mcard__check {
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: linear-gradient(145deg, #3b82f6, #2563eb);
+  box-shadow: 0 3px 7px -3px #2563eb;
 }
-.am-mcard:hover .am-mcard__cta svg { transform: translateX(4px); }
+.am-mcard__check svg { width: 12px; height: 12px; }
+.am-mcard__itemtext { font-size: 12.5px; font-weight: 600; color: #1e293b; }
 
-/* ---- brand-cohesive gradients (violet → periwinkle sweep) ---- */
-.am-mcard--grants {
-  --am-g1: #faf5ff; --am-g2: #f3e8ff;
-  --am-accent: #a855f7; --am-accent-soft: rgba(168,85,247,.18);
+/* LEARN MORE link */
+.am-mcard__link {
+  margin-top: auto; padding-top: 18px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 800;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: #1d4ed8;
 }
-.am-mcard--tenders {
-  --am-g1: #f5f3ff; --am-g2: #ece7fe;
-  --am-accent: #8b5cf6; --am-accent-soft: rgba(139,92,246,.18);
-}
-.am-mcard--financing {
-  --am-g1: #eef1ff; --am-g2: #e3e8ff;
-  --am-accent: #6366f1; --am-accent-soft: rgba(99,102,241,.18);
-}
-.am-mcard--rfp {
-  --am-g1: #eef2ff; --am-g2: #e5ebff;
-  --am-accent: #7c8cff; --am-accent-soft: rgba(124,140,255,.18);
-}
+.am-mcard:hover .am-mcard__link { text-decoration: underline; text-underline-offset: 3px; }
+.am-mcard__arrow { width: 16px; height: 16px; transition: transform .3s ease; }
+.am-mcard:hover .am-mcard__arrow { animation: am-arrow .7s ease-in-out infinite alternate; }
+@keyframes am-arrow { from { transform: translateX(0); } to { transform: translateX(5px); } }
 
 @media (max-width: 767px) {
-  .am-mcard { min-height: 196px; border-radius: 20px; }
-  .am-mcard__bg { width: 108px; height: 108px; }
+  .am-mcard { min-height: 208px; border-radius: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .am-mcard, .am-mcard__bg, .am-mcard__cta svg { transition: none; }
+  .am-mcard, .am-mcard__arrow { transition: none; }
+  .am-mcard:hover .am-mcard__arrow { animation: none; }
 }

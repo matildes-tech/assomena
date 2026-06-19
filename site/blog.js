@@ -13,7 +13,7 @@
   var ROWS = [
     { cat: 'Product', date: 'June 4, 2026', title: 'How AI company matching cuts deal-discovery time by 80%', grad: 'linear-gradient(135deg, #3b4fd1, #1e2a72)', href: '/news' },
     { cat: 'Markets', date: 'May 28, 2026', title: 'New trade corridors: Italy–Gulf partnerships to watch in 2026', grad: 'linear-gradient(135deg, #0e8a8f, #134b53)', href: '/news' },
-    { cat: 'Tech', date: 'May 20, 2026', title: 'Inside the scoring engine: how opportunities get ranked', grad: 'linear-gradient(135deg, #7c3aed, #3f1d80)', href: '/news' },
+    { cat: 'Tech', date: 'May 20, 2026', title: 'Inside the scoring engine: how opportunities get ranked', grad: 'linear-gradient(135deg, #1d4ed8, #3f1d80)', href: '/news' },
     { cat: 'Update', date: 'May 16, 2026', title: 'Welcome to AssoMENA', grad: 'linear-gradient(135deg, #2563eb, #16306e)', href: '/news/welcome' }
   ];
 

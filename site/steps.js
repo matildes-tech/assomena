@@ -84,6 +84,7 @@
       return e.children.length <= 2 && e.textContent.trim() === 'Three steps to your next opportunity';
     });
     if (!heading) return null;
+    heading.classList.add('rs-heading');  /* +2px & bold via steps.css */
     var inner = heading.closest('[class*="max-w"]');
     if (!inner) return null;
     var stepsBlock = [].slice.call(inner.children).find(function (c) {

@@ -1,0 +1,52 @@
+/* AssoMENA — unified section header system.
+   One scale for every interior section so each reads as a distinct, clearly
+   ranked block. Type scale (Nunito Sans):
+     eyebrow  13px / 800 / uppercase / +0.16em  — section label
+     title    clamp(28→40px) / 800 / -0.02em    — uniform across sections
+     subtitle 17px / 400 / 1.6                   — supporting line
+   Ratios: title:eyebrow ~3:1, title:subtitle ~2.3:1, hero H1 (46px) > title. */
+
+.am-sec-head {
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  text-align: left;
+  max-width: 720px;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: clamp(30px, 4vw, 52px) !important;
+}
+
+.am-sec-eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.am-sec-title {
+  font-size: clamp(28px, 3.4vw, 40px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.08 !important;
+  color: #0f1e3d !important;
+}
+
+.am-sec-sub {
+  margin: 14px 0 0 !important;
+  max-width: 620px;
+  font-size: 17px !important;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #5b6573 !important;
+  text-align: left !important;
+}
+
+/* dark sections: white headers (eyebrow + title) */
+.am-sec--dark .am-sec-eyebrow { color: rgba(255, 255, 255, 0.78); }
+.am-sec--dark .am-sec-title { color: #ffffff !important; }
+.am-sec--dark .am-sec-sub { color: #cbd5e1 !important; }
+
+/* retire the old ad-hoc accent bars now that the eyebrow carries the accent */
+.am-sec-hiderule { display: none !important; }

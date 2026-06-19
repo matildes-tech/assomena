@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
 
 .am-hiw {
-  --am-accent: #a855f7;
-  --am-accent-2: #7c8cff;
+  --am-accent: #2563eb;
+  --am-accent-2: #60a5fa;
   --am-h: #f6f7fc;
   --am-body: #a3a9bf;
   --am-label: #7f8499;
@@ -181,7 +181,7 @@
    the site's `lg:hidden` container — a phone + step carousel with dots. */
 
 .am-hiwm {
-  --am-accent: #a855f7; --am-accent-2: #7c8cff;
+  --am-accent: #2563eb; --am-accent-2: #60a5fa;
   --am-h: #f6f7fc; --am-body: #a3a9bf; --am-label: #7f8499;
   --am-line: rgba(255, 255, 255, 0.1);
   --sc-bg: #ffffff; --sc-ink: #1b1e2b; --sc-muted: #6b7080; --sc-card: #f4f5fa; --sc-line: #ebedf4;

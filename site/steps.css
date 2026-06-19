@@ -6,6 +6,15 @@
   font-family: 'Nunito Sans', system-ui, sans-serif;
   max-width: 1120px; margin: 0 auto 5rem;
 }
+
+/* section heading: +2px and bold */
+.rs-heading {
+  font-size: 1.625rem !important;   /* 26px (was 24px) */
+  font-weight: 800 !important;
+}
+@media (min-width: 768px) {
+  .rs-heading { font-size: 2rem !important; }   /* 32px (was 30px) */
+}
 .rs-track {
   display: flex; gap: 10px;
   border-radius: 26px; overflow: hidden;
@@ -35,7 +44,7 @@
   transition: border-color .4s ease, box-shadow .4s ease;
 }
 .rs-panel.is-active .rs-num {
-  border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, .16);
+  border-color: #2563eb; box-shadow: 0 0 0 4px rgba(168, 85, 247, .16);
 }
 
 .rs-nav { display: none; gap: 8px; }
