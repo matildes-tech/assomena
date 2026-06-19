@@ -187,10 +187,15 @@
   --sc-bg: #ffffff; --sc-ink: #1b1e2b; --sc-muted: #6b7080; --sc-card: #f4f5fa; --sc-line: #ebedf4;
   --am-ease: cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Nunito Sans', system-ui, sans-serif;
-  display: flex; flex-direction: column; align-items: center;
-  gap: clamp(20px, 5vw, 30px); max-width: 440px; margin: 0 auto;
 }
-.am-hiwm__phone .am-phone { width: clamp(212px, 60vw, 244px); }
+.am-hiwm__rail { position: relative; }
+.am-hiwm__sentinel { position: absolute; left: 0; width: 1px; opacity: 0; pointer-events: none; }
+.am-hiwm__pin {
+  position: sticky; top: 0; min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(18px, 4.5vw, 28px); overflow: hidden;
+}
+.am-hiwm__phone .am-phone { width: clamp(212px, 58vw, 244px); }
 
 .am-hiwm__text { position: relative; width: 100%; min-height: 184px; }
 .am-hiwm__step {

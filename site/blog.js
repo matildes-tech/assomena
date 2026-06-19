@@ -23,21 +23,26 @@
     var wrap = document.createElement('div');
     wrap.className = 'bl-wrap';
 
+    function metaHTML(a) {
+      return '<div class="bl-meta"><span class="bl-pill">' + esc(a.cat) + '</span><span class="bl-date">' + esc(a.date) + '</span></div>';
+    }
+
     var rowsHTML = ROWS.map(function (a) {
       return '<a class="bl-row" href="' + a.href + '">' +
         '<div class="bl-thumb" style="background:' + a.grad + '"></div>' +
         '<div class="bl-rtext">' +
-          '<div class="bl-rmeta"><span class="bl-cat">' + esc(a.cat) + '</span><span class="bl-dot"></span><span>' + esc(a.date) + '</span></div>' +
           '<h4 class="bl-rtitle">' + esc(a.title) + '</h4>' +
+          metaHTML(a) +
         '</div></a>';
     }).join('');
 
     wrap.innerHTML =
       '<a class="bl-featured" href="' + FEATURED.href + '">' +
-        '<div class="bl-cover" style="background:' + FEATURED.grad + '"><span class="bl-tag">' + esc(FEATURED.cat) + '</span></div>' +
+        '<div class="bl-cover" style="background:' + FEATURED.grad + '"></div>' +
         '<div class="bl-fbody">' +
+          '<p class="bl-eyebrow">Featured</p>' +
           '<h3 class="bl-ftitle">' + esc(FEATURED.title) + '</h3>' +
-          '<div class="bl-meta"><span class="bl-cat">' + esc(FEATURED.cat) + '</span><span class="bl-dot"></span><span>' + esc(FEATURED.date) + '</span></div>' +
+          metaHTML(FEATURED) +
         '</div>' +
       '</a>' +
       '<div class="bl-rows">' + rowsHTML + '</div>';

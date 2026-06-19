@@ -158,9 +158,15 @@
     return root;
   }
 
-  /* ---- mobile component: phone + step carousel (renders <1024px) ---- */
+  /* ---- mobile component: scroll-driven phone + step (renders <1024px) ----
+     Same mechanic and 100vh-per-step ratio as desktop: a sticky phone + text
+     pinned while a tall rail scrolls; IntersectionObserver sentinels switch
+     the active step, so the screen and copy change with the scroll. */
   function buildMobile() {
     var root = el('div', 'am-hiwm');
+    var rail = el('div', 'am-hiwm__rail');
+    rail.style.height = (STEPS.length * 100) + 'vh';
+    var pin = el('div', 'am-hiwm__pin');
     var phoneWrap = el('div', 'am-hiwm__phone');
     var phone = el('div', 'am-phone');
     phone.appendChild(el('div', 'am-phone__island'));
@@ -175,16 +181,34 @@
         '<h3 class="am-step__title">' + titleHTML(s.title) + '</h3>' +
         '<p class="am-step__desc">' + s.desc + '</p>');
       st.dataset.i = i; textWrap.appendChild(st);
-      var b = document.createElement('button'); b.dataset.i = i; b.setAttribute('aria-label', s.eyebrow); dots.appendChild(b);
+      var b = document.createElement('button'); b.dataset.i = i; b.setAttribute('aria-label', s.eyebrow);
+      b.addEventListener('click', function () {
+        var top = rail.getBoundingClientRect().top + window.scrollY;
+        var travel = rail.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: top + (travel * (i + 0.5) / STEPS.length), behavior: 'smooth' });
+      });
+      dots.appendChild(b);
     });
 
     phone.appendChild(screenWrap); phoneWrap.appendChild(phone);
-    root.appendChild(phoneWrap); root.appendChild(textWrap); root.appendChild(dots);
+    pin.appendChild(phoneWrap); pin.appendChild(textWrap); pin.appendChild(dots);
+    rail.appendChild(pin);
+
+    var sentinels = [];
+    for (var si = 0; si < STEPS.length; si++) {
+      var sen = el('div', 'am-hiwm__sentinel');
+      sen.style.top = (si * (100 / STEPS.length)) + '%';
+      sen.style.height = (100 / STEPS.length) + '%';
+      sen.dataset.i = si;
+      rail.appendChild(sen);
+      sentinels.push(sen);
+    }
+    root.appendChild(rail);
 
     var screens = screenWrap.children, texts = textWrap.children, dotEls = dots.children;
-    var cur = -1, timer = null, stopped = false;
+    var cur = -1;
     function setActive(i) {
-      i = (i + STEPS.length) % STEPS.length; if (i === cur) return; cur = i;
+      if (i === cur || i < 0 || i >= STEPS.length) return; cur = i;
       for (var k = 0; k < STEPS.length; k++) {
         var on = k === i;
         screens[k].classList.toggle('is-active', on);
@@ -192,16 +216,13 @@
         dotEls[k].classList.toggle('is-active', on);
       }
     }
-    function startAuto() { if (!stopped && !timer) timer = setInterval(function () { setActive(cur + 1); }, 4200); }
-    function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
-    dots.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      stopped = true; stopAuto(); setActive(+b.dataset.i);
-    });
-    root.addEventListener('touchstart', function () { stopped = true; stopAuto(); }, { passive: true });
-    root.addEventListener('mouseenter', stopAuto);
-    root.addEventListener('mouseleave', startAuto);
-    setActive(0); startAuto();
+    setActive(0);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) setActive(+e.target.dataset.i); });
+      }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+      sentinels.forEach(function (s) { io.observe(s); });
+    }
     return root;
   }
 

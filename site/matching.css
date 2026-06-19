@@ -1,0 +1,126 @@
+/* AssoMENA — "What We Match You With" gradient cards.
+   Replaces the 4-tile grid (post-hydration) with soft gradient cards in the
+   brand palette: badge + colored dot, oversized decorative glyph, and an
+   arrow CTA that slides on hover. Site font (Nunito Sans). */
+
+.am-match { font-family: 'Nunito Sans', system-ui, sans-serif; }
+
+.am-match__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
+}
+@media (min-width: 768px) {
+  .am-match__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ---- card ---- */
+.am-mcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: clamp(18px, 1.7vw, 24px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  overflow: hidden;
+  text-decoration: none;
+  background: linear-gradient(150deg, var(--am-g1), var(--am-g2));
+  box-shadow: 0 18px 46px -26px rgba(20, 24, 50, 0.32);
+  transition: transform .32s cubic-bezier(.2,.7,.2,1), box-shadow .32s ease;
+  isolation: isolate;
+}
+.am-mcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px -28px rgba(20, 24, 50, 0.42);
+}
+
+/* oversized decorative glyph, bottom-right */
+.am-mcard__glyph {
+  position: absolute;
+  right: -10px; bottom: -16px;
+  font-size: 116px; line-height: 1;
+  opacity: .16;
+  filter: saturate(1.1);
+  pointer-events: none;
+  transform: rotate(-6deg);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1), opacity .4s ease;
+  z-index: -1;
+}
+.am-mcard:hover .am-mcard__glyph {
+  transform: rotate(2deg) scale(1.08);
+  opacity: .24;
+}
+
+/* badge */
+.am-mcard__badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  width: -moz-fit-content; width: fit-content;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  font-size: 11px; font-weight: 800;
+  letter-spacing: .04em; text-transform: uppercase;
+  color: #3b4256;
+}
+.am-mcard__dot {
+  width: 7px; height: 7px; border-radius: 999px;
+  background: var(--am-accent);
+  box-shadow: 0 0 0 3px var(--am-accent-soft);
+}
+
+/* title + description */
+.am-mcard__body { margin-top: auto; padding-top: 18px; }
+.am-mcard__title {
+  margin: 0;
+  font-size: clamp(18px, 1.5vw, 21px);
+  font-weight: 800; letter-spacing: -0.015em;
+  color: #0b1120;
+}
+.am-mcard__desc {
+  margin: 6px 0 0;
+  font-size: 13px; line-height: 1.45;
+  color: #515a70;
+  max-width: 22ch;
+}
+
+/* CTA */
+.am-mcard__cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px;
+  font-size: 12.5px; font-weight: 800;
+  color: var(--am-accent);
+}
+.am-mcard__cta svg {
+  width: 15px; height: 15px;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.am-mcard:hover .am-mcard__cta svg { transform: translateX(4px); }
+
+/* ---- per-card brand-cohesive gradients ---- */
+.am-mcard--grants {
+  --am-g1: #ecfdf5; --am-g2: #d6f5e6;
+  --am-accent: #10b981; --am-accent-soft: rgba(16,185,129,.18);
+}
+.am-mcard--tenders {
+  --am-g1: #eef2ff; --am-g2: #e0e7ff;
+  --am-accent: #6366f1; --am-accent-soft: rgba(99,102,241,.18);
+}
+.am-mcard--financing {
+  --am-g1: #f5f3ff; --am-g2: #ece7fe;
+  --am-accent: #8b5cf6; --am-accent-soft: rgba(139,92,246,.18);
+}
+.am-mcard--rfp {
+  --am-g1: #fff7ed; --am-g2: #fdeccd;
+  --am-accent: #f59e0b; --am-accent-soft: rgba(245,158,11,.18);
+}
+
+@media (max-width: 767px) {
+  .am-mcard { min-height: 188px; border-radius: 20px; }
+  .am-mcard__glyph { font-size: 90px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .am-mcard, .am-mcard__glyph, .am-mcard__cta svg { transition: none; }
+}

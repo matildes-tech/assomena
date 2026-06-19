@@ -30,8 +30,14 @@
     if (p.length === 1) return name;
     return p[0] + ' <i>' + p.slice(1).join(' ') + '</i>';
   }
-  function cardHTML(c) {
-    return '<div class="vt-card">' +
+  var MOBILE_SHOW = 6;   // cards visible on mobile before the "All companies" button
+  var MOBILE_FADE = 4;   // fade cards from this index up to MOBILE_SHOW
+
+  function cardHTML(c, gi) {
+    var cls = 'vt-card';
+    if (gi >= MOBILE_SHOW) cls += ' vt-hide-m';
+    else if (gi >= MOBILE_FADE) cls += ' vt-fade-m';
+    return '<div class="' + cls + '">' +
       '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' + c.svg + '</svg>' +
       '<span>' + nameHTML(c.name) + '</span></div>';
   }
@@ -42,10 +48,11 @@
     var rows = '', idx = 0;
     ROWS.forEach(function (n) {
       var cells = '';
-      for (var k = 0; k < n && idx < COMPANIES.length; k++, idx++) cells += cardHTML(COMPANIES[idx]);
+      for (var k = 0; k < n && idx < COMPANIES.length; k++, idx++) cells += cardHTML(COMPANIES[idx], idx);
       rows += '<div class="vt-row">' + cells + '</div>';
     });
-    wrap.innerHTML = '<div class="vt-grid">' + rows + '</div>';
+    wrap.innerHTML = '<div class="vt-grid">' + rows + '</div>' +
+      '<a class="vt-more" href="/companies-directory">All companies <span aria-hidden="true">→</span></a>';
     return wrap;
   }
 
