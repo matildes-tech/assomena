@@ -1,66 +1,65 @@
-/* AssoMENA "How It Works" — pinned-iPhone scroll transition (novu-style)
-   Replaces the 3-step block post-hydration; keeps all other section content. */
+/* AssoMENA "How It Works" (section 2, dark band) — pinned-iPhone scroll
+   transition. Replaces the 4-step grid post-hydration; keeps the section
+   heading, subtitle and CTA. Uses the site font (Nunito Sans). */
 (function () {
   'use strict';
 
   var STEPS = [
     {
       eyebrow: 'Step 01',
-      title: ['Enter your ', 'website.'],
-      desc: 'Paste your company URL and our AI crawler reads your public pages to understand what your business does, where you operate, and what you offer.',
-      detail: {
-        label: 'Pages AI reads',
-        items: ['Homepage', '/about', '/services', '/products', '/contact']
-      },
+      title: ['Sign ', 'up.'],
+      desc: 'Create your free account and choose the membership plan that fits your needs.',
+      detail: { label: 'Includes', items: ['Free account', 'Choose your plan', 'Instant access'] },
       screen:
         '<div class="am-sc__bar"><span class="am-sc__dot"></span><span class="am-sc__brand">Asso<span>MENA</span></span></div>' +
-        '<p class="am-sc__kicker">Connect your site</p>' +
-        '<div class="am-sc__input">🔗 https://acme-industries.eu<span class="am-sc__caret"></span></div>' +
-        '<p class="am-sc__kicker">Scanning pages</p>' +
-        '<div class="am-sc__row">Homepage <span class="am-chk am-chk--ok">✓</span></div>' +
-        '<div class="am-sc__row">/about <span class="am-chk am-chk--ok">✓</span></div>' +
-        '<div class="am-sc__row">/services <span class="am-chk am-chk--ok">✓</span></div>' +
-        '<div class="am-sc__row">/products <span class="am-chk am-chk--load">◌</span></div>' +
-        '<div class="am-sc__row" style="border:0">/contact <span class="am-chk" style="color:#5b6072">·</span></div>' +
-        '<div class="am-sc__prog" style="--am-w:64%"><i></i></div>'
+        '<p class="am-sc__h">Create your account</p>' +
+        '<div class="am-sc__input">✉&nbsp; you@company.com<span class="am-sc__caret"></span></div>' +
+        '<p class="am-sc__kicker">Choose a plan</p>' +
+        '<div class="am-sc__plans"><div class="am-sc__plan is-sel"><b>Free</b><span>Get started</span></div><div class="am-sc__plan"><b>Pro</b><span>Full access</span></div></div>' +
+        '<button class="am-sc__btn">Create account</button>'
     },
     {
       eyebrow: 'Step 02',
-      title: ['AI builds your ', 'profile.'],
-      desc: 'Within minutes, AI extracts your industry, size, capabilities, and certifications into a structured profile ready for matching.',
-      detail: {
-        label: 'Profile includes',
-        items: ['Industry sectors', 'Size & employees', 'Markets & geography', 'Capabilities', 'Certifications']
-      },
+      title: ['Create your ', 'profile.'],
+      desc: 'Set up your company profile, showcase your products and services, and highlight your expertise.',
+      detail: { label: 'Showcase', items: ['Company profile', 'Products & services', 'Your expertise'] },
       screen:
-        '<div class="am-sc__head"><span class="am-sc__ava">A</span><div><div class="am-sc__name">Acme Industries</div><div class="am-sc__sub">Verified profile ✓</div></div></div>' +
-        '<div class="am-sc__field"><span class="k">Industry</span><span class="am-sc__pill">Manufacturing</span></div>' +
-        '<div class="am-sc__field"><span class="k">Size</span><span class="am-sc__pill">50–200</span></div>' +
-        '<div class="am-sc__field"><span class="k">Markets</span><span class="am-sc__pill">EU · MENA</span></div>' +
-        '<div class="am-sc__field" style="border:0"><span class="k">Capabilities</span></div>' +
-        '<div class="am-sc__chips"><span>Steel</span><span>Logistics</span><span>Export</span><span>Engineering</span></div>' +
-        '<div class="am-sc__field" style="margin-top:8px"><span class="k">Certifications</span><span class="am-sc__pill">ISO 9001 ✓</span></div>' +
-        '<div class="am-sc__prog" style="--am-w:100%;margin-top:14px"><i></i></div>'
+        '<div class="am-sc__head"><span class="am-sc__ava">A</span><div><div class="am-sc__name">Acme Industries</div><div class="am-sc__sub">Company profile</div></div></div>' +
+        '<div class="am-sc__field"><span class="k">Products &amp; services</span><div class="am-sc__chips"><span>Steel</span><span>Logistics</span><span>Export</span></div></div>' +
+        '<div class="am-sc__field"><span class="k">Expertise</span><div class="am-sc__chips"><span>Engineering</span><span>Trade</span><span>Sourcing</span></div></div>' +
+        '<div class="am-sc__prog" style="--am-w:80%"><i></i></div>' +
+        '<p class="am-sc__pcap">Profile 80% complete</p>'
     },
     {
       eyebrow: 'Step 03',
-      title: ['Get scored ', 'matches.'],
-      desc: 'Each opportunity is scored on eligibility, relevance, and competitive advantage so you focus on the best-fit matches first.',
-      detail: {
-        label: 'Scoring',
-        items: [['Eligibility', '40%'], ['Relevance', '40%'], ['Competitive', '20%']]
-      },
+      title: ['Connect & ', 'match.'],
+      desc: 'Discover companies, explore trade opportunities, and use B2B matchmaking to find the right partners.',
+      detail: { label: 'Discover', items: ['Companies', 'Trade opportunities', 'B2B matchmaking'] },
       screen:
-        '<p class="am-sc__kicker" style="margin-bottom:12px">Top matches for you</p>' +
-        match('EU Green Deal Grant', '92', [92, 88, 70]) +
-        match('GCC Infrastructure Tender', '87', [90, 82, 64]) +
-        match('Italy–MENA Trade Lead', '81', [78, 86, 60])
+        '<p class="am-sc__kicker">B2B matchmaking</p>' +
+        matchCard('G', 'Gulf Trade Co', 'Dubai · Trading', '91%') +
+        matchCard('M', 'Med Logistics', 'Genoa · Logistics', '84%') +
+        matchCard('N', 'Nile Steelworks', 'Cairo · Manufacturing', '78%')
+    },
+    {
+      eyebrow: 'Step 04',
+      title: ['Interact & ', 'grow.'],
+      desc: 'Send messages, apply to jobs, attend events, and build lasting business relationships.',
+      detail: { label: 'Engage', items: ['Messages', 'Jobs', 'Events', 'Partnerships'] },
+      screen:
+        '<p class="am-sc__kicker">Activity</p>' +
+        '<div class="am-sc__msg"><div class="am-sc__bub">Hi! Interested in your export services.</div></div>' +
+        '<div class="am-sc__msg"><div class="am-sc__bub me">Great — let’s set up a call this week.</div></div>' +
+        '<div class="am-sc__note"><i>✓</i> Applied to: Export Manager</div>' +
+        '<div class="am-sc__note"><i>⚑</i> MENA Expo 2026 · RSVP’d</div>' +
+        '<div class="am-sc__note"><i>★</i> New partnership request</div>'
     }
   ];
 
-  function match(name, score, bars) {
-    return '<div class="am-sc__match"><h5>' + name + '<span class="am-sc__score">' + score + '</span></h5>' +
-      '<div class="am-sc__bars"><i style="--v:' + bars[0] + '%"></i><i style="--v:' + bars[1] + '%"></i><i style="--v:' + bars[2] + '%"></i></div></div>';
+  function matchCard(initial, name, meta, pct) {
+    return '<div class="am-sc__match"><span class="am-sc__mava">' + initial + '</span>' +
+      '<div><div class="am-sc__mname">' + name + '</div><div class="am-sc__mmeta">' + meta + '</div></div>' +
+      '<span class="am-sc__pct">' + pct + '</span></div>';
   }
 
   function el(tag, cls, html) {
@@ -69,21 +68,15 @@
     if (html != null) n.innerHTML = html;
     return n;
   }
-
-  function titleHTML(parts) { return parts[0] + '<em>' + parts[1] + '</em>'; }
-
+  function titleHTML(p) { return p[0] + '<em>' + p[1] + '</em>'; }
   function detailHTML(d) {
-    var items = d.items.map(function (it) {
-      if (Array.isArray(it)) return '<li>' + it[0] + '<span class="am-val">' + it[1] + '</span></li>';
-      return '<li>' + it + '</li>';
-    }).join('');
+    var items = d.items.map(function (it) { return '<li>' + it + '</li>'; }).join('');
     return '<p class="am-detail__label">' + d.label + '</p><ul class="am-detail__list">' + items + '</ul>';
   }
 
   function build() {
     var root = el('div', 'am-hiw');
 
-    /* ---- desktop pinned transition ---- */
     var desktop = el('div', 'am-hiw__desktop');
     var rail = el('div', 'am-hiw__rail');
     rail.style.height = (STEPS.length * 100) + 'vh';
@@ -106,7 +99,6 @@
       step.dataset.i = i; left.appendChild(step);
 
       var det = el('div', 'am-detail', detailHTML(s.detail)); det.dataset.i = i; right.appendChild(det);
-
       var sc = el('div', 'am-screen', s.screen); sc.dataset.i = i; screenWrap.appendChild(sc);
     });
 
@@ -128,8 +120,6 @@
 
     pin.appendChild(grid); pin.appendChild(dots); rail.appendChild(pin);
 
-    /* sentinels: tile the rail in N bands; whichever crosses viewport
-       center is the active step (robust to smooth-scroll libraries). */
     var sentinels = [];
     for (var si = 0; si < STEPS.length; si++) {
       var sen = el('div', 'am-hiw__sentinel');
@@ -140,23 +130,12 @@
       sentinels.push(sen);
     }
     desktop.appendChild(rail);
+    root.appendChild(desktop);
+    /* No mobile fallback: this node lives inside the site's `hidden lg:block`
+       container, so it only renders >=1024px. Below that the site shows its
+       own original step timeline. */
 
-    /* ---- mobile fallback ---- */
-    var mob = el('div', 'am-hiw__mobile');
-    STEPS.forEach(function (s) {
-      mob.appendChild(el('div', 'am-card',
-        '<p class="am-step__eyebrow">' + s.eyebrow + '</p>' +
-        '<h3 class="am-step__title">' + titleHTML(s.title) + '</h3>' +
-        '<p class="am-step__desc" style="max-width:none">' + s.desc + '</p>' +
-        '<div class="am-card__detail">' + detailHTML(s.detail) + '</div>'));
-    });
-
-    root.appendChild(desktop); root.appendChild(mob);
-
-    /* ---- scroll engine ----
-       IntersectionObserver tracks which sentinel band crosses the viewport
-       centre line. Works with any scroll container / smooth-scroll library
-       and without relying on scroll events or rAF polling. */
+    /* ---- scroll engine: IntersectionObserver over sentinel bands ---- */
     var steps = left.children, dets = right.children, screens = screenWrap.children, dotEls = dots.children;
     var cur = -1;
     function setActive(i) {
@@ -170,48 +149,43 @@
       }
     }
     setActive(0);
-
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) setActive(+e.target.dataset.i);
-        });
+        entries.forEach(function (e) { if (e.isIntersecting) setActive(+e.target.dataset.i); });
       }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
       sentinels.forEach(function (s) { io.observe(s); });
     }
-
     return root;
   }
 
+  /* Target = the 4-step grid inside the dark "How It Works" section (section 2). */
   function locateStepsNode() {
-    var label = [].slice.call(document.querySelectorAll('*')).find(function (e) {
-      return !e.children.length && e.textContent.trim() === 'HOW IT WORKS';
+    var h2 = [].slice.call(document.querySelectorAll('h2')).find(function (e) {
+      return e.textContent.trim() === 'How It Works';
     });
-    if (!label) return null;
-    var inner = label.closest('[class*="max-w"]');
-    if (!inner) return null;
-    return [].slice.call(inner.children).find(function (c) {
-      return /STEP 1/.test(c.innerText) && /STEP 3/.test(c.innerText);
+    if (!h2) return null;
+    var sec = h2; while (sec && sec.tagName !== 'SECTION') sec = sec.parentElement;
+    if (!sec) return null;
+    var grid = [].slice.call(sec.querySelectorAll('div')).find(function (c) {
+      return /grid-cols-4/.test(c.className) && /Sign Up/.test(c.innerText) && /Interact/.test(c.innerText);
     });
+    if (!grid) return null;
+    var parent = grid.parentElement;
+    return (parent && /(^|\s)relative(\s|$)/.test(parent.className)) ? parent : grid;
   }
 
   function inject() {
     if (document.querySelector('.am-hiw')) return true;
     var target = locateStepsNode();
     if (!target) return false;
-    var section = build();
-    target.replaceWith(section);
-    // keep React from re-inserting: stop here. Static page => no re-render.
+    target.replaceWith(build());
     return true;
   }
 
   function start() {
     if (inject()) return;
     var tries = 0;
-    var t = setInterval(function () {
-      tries++;
-      if (inject() || tries > 30) clearInterval(t);
-    }, 200);
+    var t = setInterval(function () { tries++; if (inject() || tries > 30) clearInterval(t); }, 200);
   }
 
   if (document.readyState === 'complete') setTimeout(start, 400);
