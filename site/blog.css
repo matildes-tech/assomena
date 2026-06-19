@@ -1,11 +1,12 @@
-/* AssoMENA — "Latest News" blog (dremonpro structure): one large featured
-   article over a list of compact rows. Title-first, outlined category pill +
-   date below, divider lines. Dark theme, assomena accent, Nunito Sans. */
+/* AssoMENA — "Latest News" blog (dremonpro structure): two columns —
+   large featured article on the LEFT, a list of compact rows on the RIGHT.
+   Dark theme, assomena accent, site font (Nunito Sans). */
 
 .bl-wrap {
   font-family: 'Nunito Sans', system-ui, sans-serif;
-  max-width: 880px; margin: 0 auto;
-  display: flex; flex-direction: column; gap: 34px;
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.08fr 0.92fr;
+  gap: clamp(34px, 4.5vw, 60px); align-items: start;
 }
 
 /* shared meta: outlined pill + plain date */
@@ -17,7 +18,7 @@
 }
 .bl-date { font-size: 13px; color: #9aa0b4; }
 
-/* featured */
+/* featured (left column) */
 .bl-featured {
   display: block; text-decoration: none; color: inherit;
   border-radius: 14px; overflow: hidden;
@@ -30,7 +31,7 @@
   border-color: rgba(168, 85, 247, .45);
   box-shadow: 0 24px 50px -24px rgba(120, 90, 255, .5);
 }
-.bl-cover { position: relative; aspect-ratio: 16 / 8; overflow: hidden; }
+.bl-cover { position: relative; aspect-ratio: 16 / 11; overflow: hidden; }
 .bl-cover::before {
   content: ''; position: absolute; inset: 0;
   background-image: radial-gradient(rgba(255, 255, 255, .09) 1px, transparent 1px);
@@ -40,50 +41,53 @@
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(120% 95% at 12% 0%, rgba(255, 255, 255, .2), transparent 55%);
 }
-.bl-fbody { padding: 26px 30px 30px; }
+.bl-fbody { padding: 26px 28px 30px; }
 .bl-eyebrow {
   font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
   color: #8b91a6; margin: 0 0 14px;
 }
 .bl-ftitle {
-  font-size: clamp(24px, 3vw, 36px); font-weight: 800; line-height: 1.12;
+  font-size: clamp(23px, 2.6vw, 32px); font-weight: 800; line-height: 1.14;
   letter-spacing: -.015em; color: #fff; margin: 0 0 20px;
 }
 
-/* rows */
+/* rows (right column) */
 .bl-rows { display: flex; flex-direction: column; }
 .bl-row {
-  display: flex; gap: 22px; align-items: center;
-  padding: 24px 4px; text-decoration: none; color: inherit;
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 22px 2px; text-decoration: none; color: inherit;
   border-top: 1px solid rgba(255, 255, 255, .1);
   transition: padding-left .3s ease;
 }
-.bl-row:first-child { border-top: 0; }
-.bl-row:hover { padding-left: 12px; }
+.bl-row:first-child { border-top: 0; padding-top: 4px; }
+.bl-row:hover { padding-left: 10px; }
 .bl-row:hover .bl-rtitle { color: #c4a8ff; }
 .bl-thumb {
-  width: 132px; height: 92px; border-radius: 11px; flex: 0 0 auto;
+  width: 92px; height: 78px; border-radius: 10px; flex: 0 0 auto;
   position: relative; overflow: hidden;
 }
 .bl-thumb::before {
   content: ''; position: absolute; inset: 0;
   background-image: radial-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px);
-  background-size: 14px 14px; opacity: .5;
+  background-size: 13px 13px; opacity: .5;
 }
 .bl-rtext { flex: 1 1 auto; min-width: 0; }
 .bl-rtitle {
-  font-size: clamp(17px, 2vw, 23px); font-weight: 800; line-height: 1.2;
-  letter-spacing: -.01em; color: #f0f1f7; margin: 0 0 13px; transition: color .25s ease;
+  font-size: clamp(15px, 1.2vw, 17px); font-weight: 800; line-height: 1.25;
+  letter-spacing: -.01em; color: #f0f1f7; margin: 0 0 12px; transition: color .25s ease;
 }
 
-@media (max-width: 640px) {
-  .bl-wrap { gap: 26px; }
+/* mobile: stack featured over rows */
+@media (max-width: 860px) {
+  .bl-wrap { grid-template-columns: 1fr; gap: 26px; max-width: 640px; }
+  .bl-cover { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 480px) {
   .bl-cover { aspect-ratio: 16 / 10; }
   .bl-fbody { padding: 20px 20px 24px; }
   .bl-ftitle { font-size: 22px; margin-bottom: 16px; }
   .bl-row { gap: 14px; padding: 18px 2px; }
-  .bl-thumb { width: 92px; height: 70px; }
-  .bl-rtitle { font-size: 16px; margin-bottom: 10px; }
+  .bl-thumb { width: 84px; height: 70px; }
   .bl-meta { gap: 10px; }
   .bl-pill { padding: 4px 10px; font-size: 10px; }
   .bl-date { font-size: 12px; }

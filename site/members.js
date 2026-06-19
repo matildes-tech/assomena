@@ -51,28 +51,38 @@
       for (var k = 0; k < n && idx < COMPANIES.length; k++, idx++) cells += cardHTML(COMPANIES[idx], idx);
       rows += '<div class="vt-row">' + cells + '</div>';
     });
-    wrap.innerHTML = '<div class="vt-grid">' + rows + '</div>' +
-      '<a class="vt-more" href="/companies-directory">All companies <span aria-hidden="true">→</span></a>';
+    wrap.innerHTML = '<div class="vt-grid">' + rows + '</div>';
     return wrap;
-  }
-
-  function locate() {
-    var h2 = [].slice.call(document.querySelectorAll('h2')).find(function (e) {
-      return e.textContent.trim() === 'Our Member Companies';
-    });
-    if (!h2) return null;
-    var sec = h2; while (sec && sec.tagName !== 'SECTION') sec = sec.parentElement;
-    if (!sec) return null;
-    var header = [].slice.call(sec.children).find(function (c) { return c.contains(h2); });
-    var target = [].slice.call(sec.children).find(function (c) { return c !== header; });
-    return target || null;
   }
 
   function inject() {
     if (document.querySelector('.vt-members')) return true;
-    var target = locate();
+    var h2 = [].slice.call(document.querySelectorAll('h2')).find(function (e) {
+      return e.textContent.trim() === 'Our Member Companies';
+    });
+    if (!h2) return false;
+    var sec = h2; while (sec && sec.tagName !== 'SECTION') sec = sec.parentElement;
+    if (!sec) return false;
+    var header = [].slice.call(sec.children).find(function (c) { return c.contains(h2); });
+    var target = [].slice.call(sec.children).find(function (c) { return c !== header && !c.contains(h2); });
     if (!target) return false;
-    target.replaceWith(build());
+
+    var grid = build();
+    target.replaceWith(grid);
+
+    // Move the existing "All companies" link to the bottom on mobile:
+    // tag the original (hidden on mobile) and append a clone below the grid.
+    var origLink = header ? header.querySelector('a') : null;
+    if (origLink && !document.querySelector('.vt-bottom-link')) {
+      origLink.classList.add('vt-orig-link');
+      var clone = origLink.cloneNode(true);
+      clone.classList.remove('vt-orig-link');
+      clone.classList.add('vt-bottom-link');
+      var w = document.createElement('div');
+      w.className = 'vt-more-wrap';
+      w.appendChild(clone);
+      grid.appendChild(w);
+    }
     return true;
   }
 

@@ -31,8 +31,8 @@
 }
 .vt-card span i { font-weight: 400; font-style: normal; opacity: .66; }
 
-/* "All companies" button — mobile only */
-.vt-more { display: none; }
+/* The relocated "All companies" link wrapper — shown only on mobile */
+.vt-more-wrap { display: none; }
 
 @media (max-width: 680px) {
   /* flatten the 5-4-5 rows into one 2-column flow */
@@ -46,15 +46,7 @@
   .vt-card.vt-hide-m { display: none; }
   .vt-card.vt-fade-m { opacity: .42; }
 
-  .vt-more {
-    display: flex; width: -moz-fit-content; width: fit-content;
-    align-items: center; gap: 8px;
-    margin: 26px auto 0; padding: 13px 26px;
-    border-radius: 999px; text-decoration: none;
-    font-weight: 800; font-size: 14px; letter-spacing: .02em;
-    color: #fff; background: linear-gradient(135deg, #a855f7, #7c8cff);
-    box-shadow: 0 14px 30px -14px rgba(120, 90, 255, .6);
-  }
-  .vt-more span { transition: transform .25s ease; }
-  .vt-more:hover span { transform: translateX(3px); }
+  /* move the existing "All companies" link to the bottom */
+  .vt-orig-link { display: none !important; }
+  .vt-more-wrap { display: flex; justify-content: center; margin-top: 28px; }
 }
