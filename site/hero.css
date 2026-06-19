@@ -100,18 +100,20 @@
   .am-hero-globe { width: 100%; max-width: none !important; }
 }
 
-/* tablet / mobile: globe on top, text + buttons below */
+/* tablet / mobile: header (eyebrow + headline) on top, globe, then text + buttons */
 @media (max-width: 1179px) {
   .am-hero-row {
     display: flex !important; flex-direction: column !important; align-items: center !important;
+    text-align: center !important;
     padding-top: 84px !important; padding-bottom: 26px !important; gap: 6px !important; min-height: 0 !important;
   }
-  .am-hero-globe-wrap { order: -1; width: 100%; display: flex; justify-content: center; position: relative; }
-  .am-hero-text { order: 0; }
-  .am-hero-text h1.am-hero-h1 { font-size: clamp(25px, 6.2vw, 33px) !important; }
-  .am-hero-eyebrow { font-size: 11px !important; letter-spacing: .18em; margin-bottom: 12px; }
+  /* dissolve the text wrapper so its children can be sequenced around the globe */
+  .am-hero-text { display: contents !important; }
+  .am-hero-eyebrow { order: 1; font-size: 11px !important; letter-spacing: .18em; margin: 0 0 10px !important; }
+  .am-hero-text h1.am-hero-h1 { order: 2; font-size: clamp(25px, 6.2vw, 33px) !important; margin: 0 0 4px !important; }
+  .am-hero-globe-wrap { order: 3; width: 100%; display: flex; justify-content: center; position: relative; margin: 6px 0 12px; }
   .am-hero-chips { display: none !important; }
-  .am-hero-lead { font-size: 15px !important; margin: 0 auto 22px; }
-  .am-hero-cta { gap: 10px; }
-  .am-hero-globe { max-width: min(76vw, 320px) !important; margin: 0 auto 4px; }
+  .am-hero-lead { order: 4; font-size: 15px !important; margin: 0 auto 20px; }
+  .am-hero-cta { order: 5; gap: 10px; justify-content: center; }
+  .am-hero-globe { max-width: min(76vw, 320px) !important; margin: 0 auto; }
 }
