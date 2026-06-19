@@ -24,19 +24,20 @@
   font-size: 16px; line-height: 1.6; color: #aab2c8;
   margin: 0 auto 26px; max-width: 42ch;
 }
-.am-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.am-hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: center; }
 .am-hero-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: 14.5px;
-  text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  flex: 0 0 auto; width: auto; white-space: nowrap;
+  padding: 9px 18px; border-radius: 999px; font-weight: 700; font-size: 13.5px;
+  text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
 .am-hero-btn--primary {
-  background: linear-gradient(135deg, #6ea8ff, #7c8cff); color: #0a0f1e;
-  box-shadow: 0 10px 30px -10px rgba(110, 140, 255, .6);
+  background: linear-gradient(135deg, #6ea8ff, #8aa0ff); color: #0a0f1e;
+  box-shadow: 0 8px 22px -10px rgba(110, 140, 255, .65);
 }
-.am-hero-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 16px 38px -10px rgba(110, 140, 255, .75); }
-.am-hero-btn--ghost { border: 1px solid rgba(255, 255, 255, .28); color: #fff; }
-.am-hero-btn--ghost:hover { background: rgba(255, 255, 255, .08); transform: translateY(-2px); }
+.am-hero-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(110, 140, 255, .8); }
+.am-hero-btn--ghost { background: rgba(255, 255, 255, .07); border: 1.5px solid rgba(255, 255, 255, .5); color: #fff; }
+.am-hero-btn--ghost:hover { background: rgba(255, 255, 255, .14); border-color: #fff; transform: translateY(-2px); }
 
 .am-hero-globe {
   width: 100%; height: auto; display: block;
@@ -89,7 +90,7 @@
   .am-hero-chips { max-width: 100%; margin-bottom: 26px !important; }
   .am-hero-chips span { font-size: 13.5px !important; padding: 7px 15px !important; }
   .am-hero-chips, .am-hero-cta { justify-content: flex-start !important; }
-  .am-hero-btn { padding: 15px 30px !important; font-size: 15.5px !important; }
+  .am-hero-btn { padding: 11px 22px !important; font-size: 15px !important; }
 
   .am-hero-globe-wrap {
     position: absolute !important; top: 50%; right: -8%;

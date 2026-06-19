@@ -50,3 +50,15 @@
 
 /* retire the old ad-hoc accent bars now that the eyebrow carries the accent */
 .am-sec-hiderule { display: none !important; }
+
+/* centred variant (e.g. the final CTA / "Get Started" section) */
+.am-sec-head--center {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.am-sec-head--center .am-sec-sub {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}

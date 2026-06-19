@@ -22,6 +22,11 @@
     'Ready to Grow Your Business in MENA?': 'Get Started'
   };
 
+  /* sections whose header should be centred rather than left-aligned */
+  var CENTERED = {
+    'Ready to Grow Your Business in MENA?': true
+  };
+
   function luminance(rgb) {
     var m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(rgb || '');
     if (!m) return 255;
@@ -49,6 +54,7 @@
 
     h2.classList.add('am-sec-title');
     head.classList.add('am-sec-head');
+    head.classList.toggle('am-sec-head--center', !!CENTERED[title]);
 
     var sec = h2.closest('section') || head;
     var dark = luminance(sectionBg(sec)) < 140;

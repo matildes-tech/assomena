@@ -13,7 +13,7 @@
     '<p class="am-hero-lead">AssoMENA is a non-profit business association that connects EU and MENA companies.</p>' +
     '<div class="am-hero-cta">' +
       '<a class="am-hero-btn am-hero-btn--primary" href="/register">Get started</a>' +
-      '<a class="am-hero-btn am-hero-btn--ghost" href="/companies-directory">Explore the network</a>' +
+      '<a class="am-hero-btn am-hero-btn--ghost" href="/pricing">Become a member</a>' +
     '</div>';
 
   function inject() {

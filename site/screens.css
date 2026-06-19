@@ -1,14 +1,20 @@
-/* AssoMENA — "one info per screen".
-   Each tagged section fills at least one viewport, content vertically centered.
-   Free scroll (no scroll-snap). */
+/* AssoMENA — "one info per screen" (relaxed).
+   Each tagged section gets a comfortable minimum height with content centered,
+   but tall content top-aligns instead of overflowing/clipping. Free scroll. */
 
 .am-fullscreen {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 72vh;
+  min-height: 72svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;   /* centre when it fits, top-align when it overflows (no clipping) */
 }
 
-/* keep inner containers full-width so horizontal layout is unchanged */
-.am-fullscreen > * { width: 100%; }
+/* hero stays a full screen */
+.am-fullscreen.am-hero-on {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* full-width content containers, but never stretch decorative absolute blobs */
+.am-fullscreen > *:not([aria-hidden="true"]):not(.absolute) { width: 100%; }
