@@ -1,0 +1,59 @@
+/* AssoMENA — "Partners & Collaborators" client-logo band (Lifer-style),
+   injected just below the hero. Dark, to flow out of the black hero.
+   Site font (Nunito Sans). */
+
+.am-partners {
+  --p-logo: rgba(255, 255, 255, 0.42);
+  --p-logo-hi: rgba(255, 255, 255, 0.92);
+  position: relative;
+  background: linear-gradient(180deg, #000 0%, #010205 55%, #030712 100%);
+  padding: clamp(44px, 6vw, 72px) 0;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  overflow: hidden;
+}
+.am-partners__title {
+  text-align: center;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  margin: 0 0 clamp(28px, 3.5vw, 44px);
+}
+
+.am-partners__viewport {
+  position: relative; width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+}
+.am-partners__track {
+  display: flex; width: max-content;
+  animation: am-marq 42s linear infinite;
+}
+.am-partners:hover .am-partners__track { animation-play-state: paused; }
+@keyframes am-marq { to { transform: translateX(-50%); } }
+
+.am-partners__group {
+  display: flex; align-items: center;
+  gap: clamp(40px, 6vw, 84px);
+  padding-right: clamp(40px, 6vw, 84px);
+  flex: 0 0 auto;
+}
+
+.am-logo {
+  display: inline-flex; align-items: center; gap: 11px;
+  color: var(--p-logo);
+  white-space: nowrap;
+  transition: color .35s ease, opacity .35s ease;
+}
+.am-logo:hover { color: var(--p-logo-hi); }
+.am-logo svg { width: 26px; height: 26px; flex: 0 0 auto; }
+.am-logo span {
+  font-size: clamp(17px, 1.5vw, 20px); font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1;
+}
+.am-logo span i { font-weight: 300; font-style: normal; opacity: .85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .am-partners__track { animation: none; transform: none; justify-content: center; flex-wrap: wrap; gap: 40px 64px; }
+  .am-partners__group:nth-child(2) { display: none; }
+  .am-partners__viewport { -webkit-mask-image: none; mask-image: none; }
+}
