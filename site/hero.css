@@ -2,6 +2,42 @@
    the right. Cursor spotlight brightens the globe where you hover.
    NOTE: override the site's blue-colorize filter (!important) + feather edges. */
 
+/* ---- reorganized hero text (mobile-centered defaults) ---- */
+.am-hero-eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: #7da2ff; margin: 0 0 16px;
+}
+.am-hero-text h1.am-hero-h1 {
+  font-size: clamp(30px, 7vw, 40px); font-weight: 800; color: #fff;
+  line-height: 1.07; letter-spacing: -.02em; margin: 0 0 16px;
+}
+.am-hero-accent { color: #8ab4ff; }
+.am-hero-chips {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 20px;
+}
+.am-hero-chips span {
+  font-size: 12.5px; font-weight: 600; padding: 6px 13px; border-radius: 999px;
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .15);
+  color: rgba(255, 255, 255, .82);
+}
+.am-hero-lead {
+  font-size: 16px; line-height: 1.6; color: #aab2c8;
+  margin: 0 auto 26px; max-width: 42ch;
+}
+.am-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.am-hero-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: 14.5px;
+  text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.am-hero-btn--primary {
+  background: linear-gradient(135deg, #6ea8ff, #7c8cff); color: #0a0f1e;
+  box-shadow: 0 10px 30px -10px rgba(110, 140, 255, .6);
+}
+.am-hero-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 16px 38px -10px rgba(110, 140, 255, .75); }
+.am-hero-btn--ghost { border: 1px solid rgba(255, 255, 255, .28); color: #fff; }
+.am-hero-btn--ghost:hover { background: rgba(255, 255, 255, .08); transform: translateY(-2px); }
+
 .am-hero-globe {
   width: 100%; height: auto; display: block;
   opacity: 1 !important;
@@ -41,10 +77,11 @@
     position: relative; z-index: 2;
     text-align: left !important; max-width: 540px !important; flex: 0 0 auto;
   }
-  .am-hero-text h1 { font-size: clamp(40px, 4.2vw, 60px) !important; line-height: 1.04 !important; }
-  .am-hero-text h1 span { white-space: normal !important; }
+  .am-hero-text h1.am-hero-h1 { font-size: clamp(38px, 4vw, 56px) !important; line-height: 1.05 !important; }
   .am-hero-text p { margin-left: 0 !important; margin-right: 0 !important; }
-  .am-hero-text > p:first-of-type { font-size: 18px !important; }
+  .am-hero-eyebrow { font-size: 13px !important; }
+  .am-hero-lead { font-size: 17px !important; max-width: 40ch; }
+  .am-hero-chips, .am-hero-cta { justify-content: flex-start !important; }
 
   .am-hero-globe-wrap {
     position: absolute !important; top: 50%; right: -13%;

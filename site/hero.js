@@ -4,6 +4,18 @@
 (function () {
   'use strict';
 
+  // Reorganized hero text — keeps all original copy (headline, the three
+  // platform tags, the non-profit description), adds useful CTAs.
+  var HERO_HTML =
+    '<p class="am-hero-eyebrow">EU ↔ MENA business network</p>' +
+    '<h1 class="am-hero-h1">Connecting &amp; Empowering <span class="am-hero-accent">EU-MENA</span> Businesses</h1>' +
+    '<div class="am-hero-chips"><span>Intelligent platform</span><span>Advanced networking tools</span><span>Cross-border opportunities</span></div>' +
+    '<p class="am-hero-lead">AssoMENA is a non-profit business association that connects EU and MENA companies.</p>' +
+    '<div class="am-hero-cta">' +
+      '<a class="am-hero-btn am-hero-btn--primary" href="/register">Get started</a>' +
+      '<a class="am-hero-btn am-hero-btn--ghost" href="/companies-directory">Explore the network</a>' +
+    '</div>';
+
   function inject() {
     if (document.querySelector('.am-hero-on')) return true;
     var secs = [].slice.call(document.querySelectorAll('section'));
@@ -19,6 +31,7 @@
     hero.classList.add('am-hero-on');
     col.classList.add('am-hero-row');
     textBlock.classList.add('am-hero-text');
+    textBlock.innerHTML = HERO_HTML;
 
     img.classList.add('am-hero-globe');
     img.removeAttribute('srcset');
