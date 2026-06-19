@@ -1,0 +1,29 @@
+/* AssoMENA — white-theme the "Latest News" and "Why Join AssoMENA" sections.
+   Why cards stay black; the blog content is themed light via blog.css. */
+
+.am-white-sec { background: #ffffff !important; background-image: none !important; }
+.am-white-sec::before, .am-white-sec::after { background-image: none !important; }
+
+/* decorative blur blob (Why) */
+.am-white-sec [class*="blur-3xl"] { display: none !important; }
+
+/* section heading -> dark (tagged in JS so card titles are never affected) */
+.am-white-head { color: #0f172a !important; }
+
+/* section subtitle (outside cards) -> muted dark */
+.am-white-sub { color: #475569 !important; }
+
+/* small divider line under the heading -> light slate (visible on white) */
+.am-white-sec [class~="h-1"][class~="w-12"] { background-color: #cbd5e1 !important; }
+
+/* Latest News: the "All news" header link -> dark outline (exclude blog links) */
+.am-white-news a:not(.bl-featured):not(.bl-row) {
+  color: #0f172a !important; border-color: rgba(15, 23, 42, .22) !important;
+}
+.am-white-news a:not(.bl-featured):not(.bl-row):hover { background: rgba(15, 23, 42, .05) !important; }
+
+/* Why Join AssoMENA: keep the feature cards black (they were translucent-white) */
+.am-why-card {
+  background: #0b0d16 !important;
+  border-color: rgba(255, 255, 255, .1) !important;
+}

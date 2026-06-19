@@ -14,16 +14,16 @@
 .bl-pill {
   font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
   padding: 5px 13px; border-radius: 999px;
-  color: #e7e3f5; border: 1px solid rgba(196, 168, 255, .45); background: rgba(168, 85, 247, .08);
+  color: #7c3aed; border: 1px solid rgba(124, 58, 237, .3); background: rgba(124, 58, 237, .08);
 }
-.bl-date { font-size: 13px; color: #9aa0b4; }
+.bl-date { font-size: 13px; color: #64748b; }
 
 /* featured (left column) */
 .bl-featured {
   display: block; text-decoration: none; color: inherit;
   border-radius: 14px; overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .1);
-  background: rgba(255, 255, 255, .025);
+  border: 1px solid rgba(15, 23, 42, .1);
+  background: #ffffff;
   transition: transform .4s cubic-bezier(.4, 0, .2, 1), border-color .4s ease, box-shadow .4s ease;
 }
 .bl-featured:hover {
@@ -44,11 +44,11 @@
 .bl-fbody { padding: 26px 28px 30px; }
 .bl-eyebrow {
   font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
-  color: #8b91a6; margin: 0 0 14px;
+  color: #64748b; margin: 0 0 14px;
 }
 .bl-ftitle {
   font-size: clamp(23px, 2.6vw, 32px); font-weight: 800; line-height: 1.14;
-  letter-spacing: -.015em; color: #fff; margin: 0 0 20px;
+  letter-spacing: -.015em; color: #0f172a; margin: 0 0 20px;
 }
 
 /* rows (right column) */
@@ -56,12 +56,12 @@
 .bl-row {
   display: flex; gap: 18px; align-items: flex-start;
   padding: 22px 2px; text-decoration: none; color: inherit;
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(15, 23, 42, .1);
   transition: padding-left .3s ease;
 }
 .bl-row:first-child { border-top: 0; padding-top: 4px; }
 .bl-row:hover { padding-left: 10px; }
-.bl-row:hover .bl-rtitle { color: #c4a8ff; }
+.bl-row:hover .bl-rtitle { color: #7c3aed; }
 .bl-thumb {
   width: 92px; height: 78px; border-radius: 10px; flex: 0 0 auto;
   position: relative; overflow: hidden;
@@ -74,7 +74,7 @@
 .bl-rtext { flex: 1 1 auto; min-width: 0; }
 .bl-rtitle {
   font-size: clamp(15px, 1.2vw, 17px); font-weight: 800; line-height: 1.25;
-  letter-spacing: -.01em; color: #f0f1f7; margin: 0 0 12px; transition: color .25s ease;
+  letter-spacing: -.01em; color: #0f172a; margin: 0 0 12px; transition: color .25s ease;
 }
 
 /* mobile: stack featured over rows */
