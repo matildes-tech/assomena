@@ -11,7 +11,7 @@
   font-size: clamp(30px, 7vw, 40px); font-weight: 800; color: #fff;
   line-height: 1.07; letter-spacing: -.02em; margin: 0 0 16px;
 }
-.am-hero-accent { color: #8ab4ff; }
+.am-hero-accent { color: #8ab4ff; white-space: nowrap; }
 .am-hero-chips {
   display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 20px;
 }
@@ -59,41 +59,50 @@
   opacity: 0; transition: opacity .3s ease;
 }
 
-/* desktop: headline left, big globe bleeding off the right edge */
-@media (min-width: 1024px) {
-  .am-hero-row {
-    position: relative !important;
-    max-width: none !important; width: 100% !important;
-    min-height: 82vh !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    padding-left: clamp(28px, 6vw, 96px) !important; padding-right: 0 !important;
+/* desktop (wide): headline left, big globe bleeding off the right edge.
+   The hero background is a navy->black radial so the globe image's dark navy
+   blends seamlessly (no visible rectangle/seam). */
+@media (min-width: 1180px) {
+  .am-hero-on {
+    background: radial-gradient(72% 125% at 82% 50%, #02071a 0%, #010413 44%, #000208 70%, #000 90%) !important;
   }
-  .am-hero-row::before {
-    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(90deg, #05070f 0%, rgba(5,7,15,.74) 26%, rgba(5,7,15,0) 56%);
+  .am-hero-row {
+    position: static !important;
+    max-width: 1300px !important; width: auto !important; margin: 0 auto !important;
+    min-height: 82vh !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0 clamp(24px, 4vw, 56px) !important;
   }
   .am-hero-text {
     position: relative; z-index: 2;
-    text-align: left !important; max-width: 540px !important; flex: 0 0 auto;
+    text-align: left !important; max-width: 480px !important; flex: 0 0 auto;
+    text-shadow: 0 1px 22px rgba(0, 0, 0, .55);
   }
-  .am-hero-text h1.am-hero-h1 { font-size: clamp(38px, 4vw, 56px) !important; line-height: 1.05 !important; }
+  .am-hero-text h1.am-hero-h1 { font-size: clamp(36px, 3.6vw, 54px) !important; line-height: 1.05 !important; }
   .am-hero-text p { margin-left: 0 !important; margin-right: 0 !important; }
   .am-hero-eyebrow { font-size: 13px !important; }
-  .am-hero-lead { font-size: 17px !important; max-width: 40ch; }
+  .am-hero-lead { font-size: 17px !important; max-width: 38ch; }
+  .am-hero-chips { max-width: 100%; }
   .am-hero-chips, .am-hero-cta { justify-content: flex-start !important; }
 
   .am-hero-globe-wrap {
-    position: absolute !important; top: 50%; right: -13%;
+    position: absolute !important; top: 50%; right: -6%;
     transform: translateY(-50%);
-    width: min(74vw, 960px) !important; max-width: none !important;
+    width: clamp(560px, 52vw, 820px) !important; max-width: none !important;
     margin: 0 !important; z-index: 0;
   }
   .am-hero-globe { width: 100%; max-width: none !important; }
 }
 
-/* tablet / mobile: stacked, globe centered below the text */
-@media (max-width: 1023px) {
+/* tablet / mobile: stacked + decluttered (less overwhelming) */
+@media (max-width: 1179px) {
+  .am-hero-text h1.am-hero-h1 { font-size: clamp(25px, 6.2vw, 33px) !important; }
+  .am-hero-eyebrow { font-size: 11px !important; letter-spacing: .18em; margin-bottom: 12px; }
+  .am-hero-chips { display: none !important; }
+  .am-hero-lead { font-size: 15px !important; margin: 0 auto 22px; }
+  .am-hero-cta { gap: 10px; }
   .am-hero-globe-wrap { width: 100%; display: flex; justify-content: center; position: relative; }
-  .am-hero-globe { max-width: min(90vw, 440px) !important; margin: 0 auto; }
+  .am-hero-globe { max-width: min(76vw, 320px) !important; margin: 14px auto 0; }
 }
