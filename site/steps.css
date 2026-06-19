@@ -1,0 +1,98 @@
+/* AssoMENA — "Three steps to your next opportunity" horizontal accordion
+   (NYC budgeting-guide style), re-skinned to assomena: Nunito Sans,
+   dark-plum panels, purple accent. Replaces the 3-step block. */
+
+.rs-accordion {
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  max-width: 1120px; margin: 0 auto 5rem;
+}
+.rs-track {
+  display: flex; gap: 10px;
+  border-radius: 26px; overflow: hidden;
+}
+.rs-panel {
+  position: relative; flex: 1 1 0; min-width: 80px;
+  background: var(--bg, #241d3a);
+  border: 0; text-align: left; cursor: pointer; color: #fff;
+  padding: 28px 26px; min-height: 320px; overflow: hidden;
+  transition: flex-grow .55s cubic-bezier(.4, 0, .2, 1), background .5s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.rs-panel:nth-child(1) { --bg: #1b1430; }
+.rs-panel:nth-child(2) { --bg: #272046; }
+.rs-panel:nth-child(3) { --bg: #342c58; }
+.rs-panel.is-active {
+  flex-grow: 9;
+  background: linear-gradient(135deg, #241a3c 0%, #150f20 100%);
+}
+
+.rs-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .32);
+  font-weight: 800; font-size: 18px; color: #fff;
+  transition: border-color .4s ease, box-shadow .4s ease;
+}
+.rs-panel.is-active .rs-num {
+  border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, .16);
+}
+
+.rs-nav {
+  position: absolute; top: 31px; left: 88px; display: flex; gap: 8px;
+  opacity: 0; pointer-events: none; transition: opacity .35s ease .1s;
+}
+.rs-panel.is-active .rs-nav { opacity: 1; pointer-events: auto; }
+.rs-nav button {
+  width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, .22); background: transparent;
+  color: rgba(255, 255, 255, .8); font-size: 16px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.rs-nav button:hover { background: rgba(168, 85, 247, .9); border-color: transparent; color: #fff; }
+
+.rs-vtitle {
+  position: absolute; left: 50%; bottom: 28px;
+  transform: translateX(-50%); writing-mode: vertical-rl; rotate: 180deg;
+  font-weight: 700; font-size: 15px; letter-spacing: .01em;
+  color: rgba(255, 255, 255, .58); white-space: nowrap;
+  transition: opacity .3s ease;
+}
+.rs-panel.is-active .rs-vtitle { opacity: 0; }
+
+.rs-content {
+  width: min(560px, 60vw); margin-top: 26px;
+  opacity: 0; transform: translateY(10px); pointer-events: none;
+  transition: opacity .45s ease, transform .45s ease;
+}
+.rs-panel.is-active .rs-content {
+  opacity: 1; transform: none; pointer-events: auto; transition-delay: .15s;
+}
+
+.rs-title {
+  font-size: clamp(26px, 2.6vw, 38px); font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.08; margin: 0 0 14px; color: #fff;
+}
+.rs-desc {
+  font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, .74);
+  max-width: 48ch; margin: 0 0 24px;
+}
+.rs-detail__label {
+  font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+  color: #c4a8ff; margin: 0 0 12px;
+}
+.rs-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.rs-chips span {
+  font-size: 13px; font-weight: 600; padding: 7px 13px; border-radius: 999px;
+  background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .14);
+  color: rgba(255, 255, 255, .86);
+}
+
+@media (max-width: 768px) {
+  .rs-accordion { margin-bottom: 3.5rem; }
+  .rs-track { flex-direction: column; border-radius: 20px; }
+  .rs-panel { flex: 1 1 auto; min-width: 0; min-height: 0; padding: 24px 22px; }
+  .rs-panel.is-active { flex-grow: 0; }
+  .rs-vtitle, .rs-nav { display: none; }
+  .rs-content { width: auto; opacity: 1; transform: none; pointer-events: auto; margin-top: 18px; }
+}
